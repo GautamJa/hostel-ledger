@@ -1,0 +1,6 @@
+{
+  "name": "Dormis - Hostel Management System",
+  "description": "Classical, secure hostel management system with student registration, custom fields, role-based access, room allocations, editable fee structures, immutable payment ledger, PDF reports, and PostgreSQL backups.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

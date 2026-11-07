@@ -1,0 +1,745 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "uid": "system_admin_uid",
+      "email": "admin@dormis.edu",
+      "fullName": "System Administrator",
+      "role": "admin",
+      "phone": "+1 (555) 100-2000",
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "uid": "system_warden_uid",
+      "email": "warden@dormis.edu",
+      "fullName": "Arthur Pendelton (Warden)",
+      "role": "warden",
+      "phone": "+1 (555) 234-5678",
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "uid": "system_accountant_uid",
+      "email": "accountant@dormis.edu",
+      "fullName": "Accounts Officer",
+      "role": "accountant",
+      "phone": "+1 (555) 345-6789",
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "uid": "system_student_uid",
+      "email": "julian.vance@example.edu",
+      "fullName": "Julian Vance",
+      "role": "student",
+      "phone": "+1 (555) 456-7890",
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "uid": "user_gautam_jayswal",
+      "email": "jayswalgautam4@gmail.com",
+      "fullName": "Gautam Jayswal",
+      "role": "student",
+      "phone": "+977 980-0000000",
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "uid": "0vMvOzUiqTNMa4h0obz0AYHZr732",
+      "email": "gautam.080bct29@acem.edu.np",
+      "fullName": "Gautam Jayswal",
+      "role": "admin",
+      "phone": null,
+      "isActive": true,
+      "id": 6,
+      "createdAt": "2026-11-05T12:41:36.428Z",
+      "updatedAt": "2026-11-05T12:41:36.428Z"
+    }
+  ],
+  "hostels": [
+    {
+      "id": 1,
+      "name": "Ashoka Residence (Block A - Boys)",
+      "type": "boys",
+      "address": "North Residential Quad, Campus Road",
+      "wardenName": "Arthur Pendelton",
+      "contactPhone": "+1 (555) 234-5678",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "Lotus Wing (Block B - Girls)",
+      "type": "girls",
+      "address": "South Garden Quad, Campus Road",
+      "wardenName": "Eleanor Vance",
+      "contactPhone": "+1 (555) 987-6543",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "rooms": [
+    {
+      "id": 1,
+      "hostelId": 1,
+      "roomNumber": "A-101",
+      "floor": 1,
+      "capacity": 2,
+      "defaultMonthlyFee": "500.00",
+      "status": "available",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "hostelId": 1,
+      "roomNumber": "A-102",
+      "floor": 1,
+      "capacity": 2,
+      "defaultMonthlyFee": "480.00",
+      "status": "available",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "hostelId": 1,
+      "roomNumber": "A-201",
+      "floor": 2,
+      "capacity": 3,
+      "defaultMonthlyFee": "420.00",
+      "status": "available",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "hostelId": 1,
+      "roomNumber": "A-202",
+      "floor": 2,
+      "capacity": 2,
+      "defaultMonthlyFee": "520.00",
+      "status": "available",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "hostelId": 2,
+      "roomNumber": "B-101",
+      "floor": 1,
+      "capacity": 2,
+      "defaultMonthlyFee": "500.00",
+      "status": "available",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "hostelId": 2,
+      "roomNumber": "B-102",
+      "floor": 1,
+      "capacity": 2,
+      "defaultMonthlyFee": "500.00",
+      "status": "available",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "hostelId": 1,
+      "roomNumber": "104",
+      "floor": 1,
+      "capacity": 4,
+      "defaultMonthlyFee": "500.00",
+      "status": "available",
+      "id": 7,
+      "createdAt": "2026-11-04T13:25:01.367Z"
+    },
+    {
+      "hostelId": 1,
+      "roomNumber": "202",
+      "floor": 1,
+      "capacity": 4,
+      "defaultMonthlyFee": "500.00",
+      "status": "available",
+      "id": 8,
+      "createdAt": "2026-11-04T13:25:16.929Z"
+    },
+    {
+      "hostelId": 1,
+      "roomNumber": "101",
+      "floor": 1,
+      "capacity": 4,
+      "defaultMonthlyFee": "500.00",
+      "status": "available",
+      "id": 9,
+      "createdAt": "2026-11-07T14:17:56.078Z"
+    },
+    {
+      "hostelId": 1,
+      "roomNumber": "122",
+      "floor": 1,
+      "capacity": 4,
+      "defaultMonthlyFee": "500.00",
+      "status": "available",
+      "id": 10,
+      "createdAt": "2026-11-07T14:20:57.043Z"
+    },
+    {
+      "hostelId": 1,
+      "roomNumber": "105",
+      "floor": 1,
+      "capacity": 4,
+      "defaultMonthlyFee": "500.00",
+      "status": "available",
+      "id": 11,
+      "createdAt": "2026-11-07T14:30:08.823Z"
+    }
+  ],
+  "students": [
+    {
+      "userId": null,
+      "admissionNumber": "ADM-2026-001",
+      "firstName": "Gautam",
+      "lastName": "Jayswal",
+      "gender": "male",
+      "dob": null,
+      "email": "jayswalgautam4@gmail.com",
+      "phone": "+9779825227507",
+      "emergencyContactName": null,
+      "emergencyContactPhone": null,
+      "bloodGroup": null,
+      "homeAddress": "Kathmandu,Nepal",
+      "roomId": 10,
+      "monthlyFee": "20000.00",
+      "status": "active",
+      "admissionDate": "2026-11-07",
+      "vacatedDate": null,
+      "notes": null,
+      "id": 1,
+      "createdAt": "2026-11-07T14:20:57.044Z",
+      "updatedAt": "2026-11-07T14:21:23.391Z"
+    }
+  ],
+  "customFields": [
+    {
+      "id": 1,
+      "entityType": "student",
+      "fieldName": "guardian_name",
+      "fieldLabel": "Guardian / Parent Name",
+      "fieldType": "text",
+      "isRequired": true,
+      "optionsJson": null,
+      "displayOrder": 1,
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "entityType": "student",
+      "fieldName": "guardian_phone",
+      "fieldLabel": "Guardian Phone",
+      "fieldType": "text",
+      "isRequired": true,
+      "optionsJson": null,
+      "displayOrder": 2,
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "entityType": "student",
+      "fieldName": "department",
+      "fieldLabel": "Academic Department",
+      "fieldType": "dropdown",
+      "isRequired": false,
+      "optionsJson": "[\"Computer Science\",\"Mechanical Engineering\",\"Business Administration\",\"Biotechnology\",\"Architecture\"]",
+      "displayOrder": 3,
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "entityType": "student",
+      "fieldName": "dietary_preference",
+      "fieldLabel": "Mess & Dietary Preference",
+      "fieldType": "dropdown",
+      "isRequired": false,
+      "optionsJson": "[\"Standard / Non-Veg\",\"Vegetarian\",\"Vegan\",\"Halal\",\"Jain\"]",
+      "displayOrder": 4,
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "entityType": "student",
+      "fieldName": "laptop_serial_no",
+      "fieldLabel": "Registered Laptop Serial #",
+      "fieldType": "text",
+      "isRequired": false,
+      "optionsJson": null,
+      "displayOrder": 5,
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "studentFieldValues": [],
+  "feeAdjustments": [
+    {
+      "studentId": 1,
+      "oldFee": "0.00",
+      "newFee": "500.00",
+      "effectiveFrom": "2026-11-07",
+      "reason": "Initial admission fee structure",
+      "adjustedBy": 6,
+      "id": 1,
+      "createdAt": "2026-11-07T14:20:57.045Z"
+    },
+    {
+      "studentId": 1,
+      "oldFee": "500.00",
+      "newFee": "20000.00",
+      "effectiveFrom": "2026-11-07",
+      "reason": "gggg",
+      "adjustedBy": 6,
+      "id": 2,
+      "createdAt": "2026-11-07T14:21:23.392Z"
+    }
+  ],
+  "invoices": [
+    {
+      "invoiceNumber": "INV-202611-0001",
+      "studentId": 1,
+      "billingMonth": "2026-11",
+      "dueDate": "2026-11-30",
+      "amountDue": "20000.00",
+      "amountPaid": "0.00",
+      "status": "pending",
+      "id": 1,
+      "createdAt": "2026-11-07T14:20:57.046Z"
+    }
+  ],
+  "payments": [],
+  "emailReminders": [],
+  "backups": [
+    {
+      "id": 3,
+      "filename": "hostel_database_backup_2026-11-07T14-08-18-092Z.json",
+      "backupType": "manual_export",
+      "fileSizeBytes": 24585,
+      "tablesCount": 11,
+      "recordsCount": 25,
+      "checksum": "15a28e3e6ef5148c37a8a95712425bee85582f6e354fbfb019da231352dfdc61",
+      "payloadJson": "{\n  \"version\": \"2.0\",\n  \"database\": \"PostgreSQL Cloud SQL & Independent Storage Engine\",\n  \"exportedAt\": \"2026-11-07T14:08:18.090Z\",\n  \"metadata\": {\n    \"system\": \"Classical Hostel Management System\",\n    \"authoritativeStore\": \"Encrypted & Independent Daily Backups Enabled\"\n  },\n  \"counts\": {\n    \"users\": 6,\n    \"hostels\": 2,\n    \"rooms\": 8,\n    \"students\": 1,\n    \"customFields\": 5,\n    \"invoices\": 2,\n    \"payments\": 1,\n    \"emailReminders\": 13\n  },\n  \"tables\": {\n    \"users\": [\n      {\n        \"id\": 1,\n        \"uid\": \"system_admin_uid\",\n        \"email\": \"admin@dormis.edu\",\n        \"fullName\": \"System Administrator\",\n        \"role\": \"admin\",\n        \"phone\": \"+1 (555) 100-2000\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\",\n        \"updatedAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"uid\": \"system_warden_uid\",\n        \"email\": \"warden@dormis.edu\",\n        \"fullName\": \"Arthur Pendelton (Warden)\",\n        \"role\": \"warden\",\n        \"phone\": \"+1 (555) 234-5678\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\",\n        \"updatedAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 3,\n        \"uid\": \"system_accountant_uid\",\n        \"email\": \"accountant@dormis.edu\",\n        \"fullName\": \"Accounts Officer\",\n        \"role\": \"accountant\",\n        \"phone\": \"+1 (555) 345-6789\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\",\n        \"updatedAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 4,\n        \"uid\": \"system_student_uid\",\n        \"email\": \"julian.vance@example.edu\",\n        \"fullName\": \"Julian Vance\",\n        \"role\": \"student\",\n        \"phone\": \"+1 (555) 456-7890\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\",\n        \"updatedAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 5,\n        \"uid\": \"user_gautam_jayswal\",\n        \"email\": \"jayswalgautam4@gmail.com\",\n        \"fullName\": \"Gautam Jayswal\",\n        \"role\": \"student\",\n        \"phone\": \"+977 980-0000000\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\",\n        \"updatedAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"uid\": \"0vMvOzUiqTNMa4h0obz0AYHZr732\",\n        \"email\": \"gautam.080bct29@acem.edu.np\",\n        \"fullName\": \"Gautam Jayswal\",\n        \"role\": \"admin\",\n        \"phone\": null,\n        \"isActive\": true,\n        \"id\": 6,\n        \"createdAt\": \"2026-11-05T12:41:36.428Z\",\n        \"updatedAt\": \"2026-11-05T12:41:36.428Z\"\n      }\n    ],\n    \"hostels\": [\n      {\n        \"id\": 1,\n        \"name\": \"Ashoka Residence (Block A - Boys)\",\n        \"type\": \"boys\",\n        \"address\": \"North Residential Quad, Campus Road\",\n        \"wardenName\": \"Arthur Pendelton\",\n        \"contactPhone\": \"+1 (555) 234-5678\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"name\": \"Lotus Wing (Block B - Girls)\",\n        \"type\": \"girls\",\n        \"address\": \"South Garden Quad, Campus Road\",\n        \"wardenName\": \"Eleanor Vance\",\n        \"contactPhone\": \"+1 (555) 987-6543\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      }\n    ],\n    \"rooms\": [\n      {\n        \"id\": 1,\n        \"hostelId\": 1,\n        \"roomNumber\": \"A-101\",\n        \"floor\": 1,\n        \"capacity\": 2,\n        \"defaultMonthlyFee\": \"500.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"hostelId\": 1,\n        \"roomNumber\": \"A-102\",\n        \"floor\": 1,\n        \"capacity\": 2,\n        \"defaultMonthlyFee\": \"480.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 3,\n        \"hostelId\": 1,\n        \"roomNumber\": \"A-201\",\n        \"floor\": 2,\n        \"capacity\": 3,\n        \"defaultMonthlyFee\": \"420.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 4,\n        \"hostelId\": 1,\n        \"roomNumber\": \"A-202\",\n        \"floor\": 2,\n        \"capacity\": 2,\n        \"defaultMonthlyFee\": \"520.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 5,\n        \"hostelId\": 2,\n        \"roomNumber\": \"B-101\",\n        \"floor\": 1,\n        \"capacity\": 2,\n        \"defaultMonthlyFee\": \"500.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 6,\n        \"hostelId\": 2,\n        \"roomNumber\": \"B-102\",\n        \"floor\": 1,\n        \"capacity\": 2,\n        \"defaultMonthlyFee\": \"500.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"hostelId\": 1,\n        \"roomNumber\": \"104\",\n        \"floor\": 1,\n        \"capacity\": 4,\n        \"defaultMonthlyFee\": \"500.00\",\n        \"status\": \"available\",\n        \"id\": 7,\n        \"createdAt\": \"2026-11-04T13:25:01.367Z\"\n      },\n      {\n        \"hostelId\": 1,\n        \"roomNumber\": \"202\",\n        \"floor\": 1,\n        \"capacity\": 4,\n        \"defaultMonthlyFee\": \"500.00\",\n        \"status\": \"available\",\n        \"id\": 8,\n        \"createdAt\": \"2026-11-04T13:25:16.929Z\"\n      }\n    ],\n    \"students\": [\n      {\n        \"id\": 2,\n        \"userId\": 5,\n        \"admissionNumber\": \"ADM-2024-002\",\n        \"firstName\": \"Gautam\",\n        \"lastName\": \"Jayswal\",\n        \"gender\": \"male\",\n        \"dob\": \"2002-11-20\",\n        \"email\": \"jayswalgautam4@gmail.com\",\n        \"phone\": \"+977 980-1234567\",\n        \"emergencyContactName\": \"M. Jayswal\",\n        \"emergencyContactPhone\": \"+977 980-9998888\",\n        \"bloodGroup\": \"B+\",\n        \"homeAddress\": \"Main City Center, Ward 4\",\n        \"roomId\": 2,\n        \"monthlyFee\": \"20000.00\",\n        \"status\": \"active\",\n        \"admissionDate\": \"2024-09-01\",\n        \"vacatedDate\": \"2026-11-03\",\n        \"notes\": \"Updated notes for Gautam Jayswal\",\n        \"createdAt\": \"2024-09-01T00:00:00.000Z\",\n        \"updatedAt\": \"2026-11-05T13:25:28.424Z\"\n      }\n    ],\n    \"customFields\": [\n      {\n        \"id\": 1,\n        \"entityType\": \"student\",\n        \"fieldName\": \"guardian_name\",\n        \"fieldLabel\": \"Guardian / Parent Name\",\n        \"fieldType\": \"text\",\n        \"isRequired\": true,\n        \"optionsJson\": null,\n        \"displayOrder\": 1,\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"entityType\": \"student\",\n        \"fieldName\": \"guardian_phone\",\n        \"fieldLabel\": \"Guardian Phone\",\n        \"fieldType\": \"text\",\n        \"isRequired\": true,\n        \"optionsJson\": null,\n        \"displayOrder\": 2,\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 3,\n        \"entityType\": \"student\",\n        \"fieldName\": \"department\",\n        \"fieldLabel\": \"Academic Department\",\n        \"fieldType\": \"dropdown\",\n        \"isRequired\": false,\n        \"optionsJson\": \"[\\\"Computer Science\\\",\\\"Mechanical Engineering\\\",\\\"Business Administration\\\",\\\"Biotechnology\\\",\\\"Architecture\\\"]\",\n        \"displayOrder\": 3,\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 4,\n        \"entityType\": \"student\",\n        \"fieldName\": \"dietary_preference\",\n        \"fieldLabel\": \"Mess & Dietary Preference\",\n        \"fieldType\": \"dropdown\",\n        \"isRequired\": false,\n        \"optionsJson\": \"[\\\"Standard / Non-Veg\\\",\\\"Vegetarian\\\",\\\"Vegan\\\",\\\"Halal\\\",\\\"Jain\\\"]\",\n        \"displayOrder\": 4,\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 5,\n        \"entityType\": \"student\",\n        \"fieldName\": \"laptop_serial_no\",\n        \"fieldLabel\": \"Registered Laptop Serial #\",\n        \"fieldType\": \"text\",\n        \"isRequired\": false,\n        \"optionsJson\": null,\n        \"displayOrder\": 5,\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      }\n    ],\n    \"studentFieldValues\": [\n      {\n        \"id\": 5,\n        \"studentId\": 2,\n        \"fieldId\": 1,\n        \"fieldValue\": \"M. Jayswal\",\n        \"updatedAt\": \"2024-09-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 6,\n        \"studentId\": 2,\n        \"fieldId\": 2,\n        \"fieldValue\": \"+977 980-9998888\",\n        \"updatedAt\": \"2024-09-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 7,\n        \"studentId\": 2,\n        \"fieldId\": 3,\n        \"fieldValue\": \"Computer Science\",\n        \"updatedAt\": \"2024-09-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 8,\n        \"studentId\": 2,\n        \"fieldId\": 4,\n        \"fieldValue\": \"Standard / Non-Veg\",\n        \"updatedAt\": \"2024-09-01T00:00:00.000Z\"\n      }\n    ],\n    \"feeAdjustments\": [\n      {\n        \"id\": 2,\n        \"studentId\": 2,\n        \"oldFee\": \"0.00\",\n        \"newFee\": \"480.00\",\n        \"effectiveFrom\": \"2024-09-01\",\n        \"reason\": \"Initial admission fee structure (Block A-102)\",\n        \"adjustedBy\": 1,\n        \"createdAt\": \"2024-09-01T00:00:00.000Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"oldFee\": \"480.00\",\n        \"newFee\": \"20000.00\",\n        \"reason\": \"Updated from student panel / profile\",\n        \"effectiveFrom\": \"2026-11-05\",\n        \"adjustedBy\": 1,\n        \"id\": 3,\n        \"createdAt\": \"2026-11-05T13:25:28.425Z\"\n      }\n    ],\n    \"invoices\": [\n      {\n        \"id\": 2,\n        \"invoiceNumber\": \"INV-202502-0002\",\n        \"studentId\": 2,\n        \"billingMonth\": \"2025-02\",\n        \"dueDate\": \"2025-02-28\",\n        \"amountDue\": \"20000.00\",\n        \"amountPaid\": \"0.00\",\n        \"status\": \"pending\",\n        \"createdAt\": \"2025-02-01T00:00:00.000Z\"\n      },\n      {\n        \"invoiceNumber\": \"INV-202612-0002\",\n        \"studentId\": 2,\n        \"billingMonth\": \"2026-12\",\n        \"dueDate\": \"2026-12-31\",\n        \"amountDue\": \"20000.00\",\n        \"amountPaid\": \"10000.00\",\n        \"status\": \"partial\",\n        \"id\": 3,\n        \"createdAt\": \"2026-11-07T14:08:00.289Z\"\n      }\n    ],\n    \"payments\": [\n      {\n        \"receiptNumber\": \"REC-20261106-659DB7\",\n        \"invoiceId\": 3,\n        \"studentId\": 2,\n        \"amount\": \"10000.00\",\n        \"paymentMethod\": \"upi\",\n        \"transactionReference\": \"UPI-ADV-998877\",\n        \"paymentDate\": \"2026-11-06\",\n        \"collectedBy\": 1,\n        \"remarks\": \"Advance partial payment for December\",\n        \"id\": 1,\n        \"createdAt\": \"2026-11-07T14:08:00.291Z\"\n      }\n    ],\n    \"emailReminders\": [\n      {\n        \"id\": 1,\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"Fee Payment Notice: Hostel Dues - Gautam Jayswal\",\n        \"body\": \"Dear Gautam,\\n\\nThis is a formal reminder regarding your hostel accommodation fee of $480.00 for 2025-02 (Invoice: INV-202502-0002, Due: 2025-02-10).\\n\\nPlease ensure your dues are cleared at the accounts office or via online transfer.\\n\\nWarm regards,\\nHostel Administration\",\n        \"status\": \"sent\",\n        \"sentAt\": \"2025-02-03T09:00:00.000Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Hostel Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from the Hostel Administration & Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: $480.00\\n- Amount Paid: $0.00\\n- Remaining Balance: $480.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nHostel Accounts & Residence Office\\nDormis Residence System\",\n        \"status\": \"automated_sent\",\n        \"id\": 2,\n        \"sentAt\": \"2026-11-04T11:02:36.664Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Hostel Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from the Hostel Administration & Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: $480.00\\n- Amount Paid: $0.00\\n- Remaining Balance: $480.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nHostel Accounts & Residence Office\\nDormis Residence System\",\n        \"status\": \"automated_sent\",\n        \"id\": 4,\n        \"sentAt\": \"2026-11-04T11:02:45.642Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Hostel Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from the Hostel Administration & Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: $480.00\\n- Amount Paid: $0.00\\n- Remaining Balance: $480.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nHostel Accounts & Residence Office\\nDormis Residence System\",\n        \"status\": \"automated_sent\",\n        \"id\": 6,\n        \"sentAt\": \"2026-11-04T13:18:44.924Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Hostel Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from the Hostel Administration & Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: $480.00\\n- Amount Paid: $0.00\\n- Remaining Balance: $480.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nHostel Accounts & Residence Office\\nDormis Residence System\",\n        \"status\": \"automated_sent\",\n        \"id\": 8,\n        \"sentAt\": \"2026-11-04T13:24:56.035Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Hostel Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from the Hostel Administration & Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: $480.00\\n- Amount Paid: $0.00\\n- Remaining Balance: $480.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nHostel Accounts & Residence Office\\nDormis Residence System\",\n        \"status\": \"automated_sent\",\n        \"id\": 10,\n        \"sentAt\": \"2026-11-05T12:41:29.178Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Hostel Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from the Hostel Administration & Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: $480.00\\n- Amount Paid: $0.00\\n- Remaining Balance: $480.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nHostel Accounts & Residence Office\\nDormis Residence System\",\n        \"status\": \"automated_sent\",\n        \"id\": 12,\n        \"sentAt\": \"2026-11-05T12:52:44.954Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Hostel Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from the Hostel Administration & Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: $480.00\\n- Amount Paid: $0.00\\n- Remaining Balance: $480.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nHostel Accounts & Residence Office\\nDormis Residence System\",\n        \"status\": \"automated_sent\",\n        \"id\": 14,\n        \"sentAt\": \"2026-11-05T13:04:36.930Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Hostel Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from the Hostel Administration & Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: $480.00\\n- Amount Paid: $0.00\\n- Remaining Balance: $480.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nHostel Accounts & Residence Office\\nDormis Residence System\",\n        \"status\": \"automated_sent\",\n        \"id\": 15,\n        \"sentAt\": \"2026-11-05T13:19:44.831Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from SomnathRecorders Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: 480.00\\n- Amount Paid: 0.00\\n- Remaining Balance: 480.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nSomnathRecorders Accounts Office\",\n        \"status\": \"automated_sent\",\n        \"id\": 16,\n        \"sentAt\": \"2026-11-05T13:25:23.293Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from SomnathRecorders Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: 20000.00\\n- Amount Paid: 0.00\\n- Remaining Balance: 20000.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nSomnathRecorders Accounts Office\",\n        \"status\": \"automated_sent\",\n        \"id\": 17,\n        \"sentAt\": \"2026-11-05T13:25:53.438Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from SomnathRecorders Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: 20000.00\\n- Amount Paid: 0.00\\n- Remaining Balance: 20000.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nSomnathRecorders Accounts Office\",\n        \"status\": \"automated_sent\",\n        \"id\": 18,\n        \"sentAt\": \"2026-11-07T13:56:43.883Z\"\n      },\n      {\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"⏰ Urgent: Fee Due Tomorrow (2025-02-28) - Gautam Jayswal\",\n        \"body\": \"Dear Gautam Jayswal,\\n\\nThis is an automated notification from SomnathRecorders Accounts Office.\\n\\nIn accordance with hostel rules, your accommodation payment for 2025-02 must be settled before the last day of the month (2025-02-28). There is exactly 1 day left before the deadline.\\n\\nPayment Account Summary:\\n- Resident Name: Gautam Jayswal (Student ID: ADM-2024-002)\\n- Assigned Room: Room 2\\n- Billing Cycle: 2025-02\\n- Invoice Number: INV-202502-0002\\n- Total Amount Due: 20000.00\\n- Amount Paid: 0.00\\n- Remaining Balance: 20000.00\\n- Month-End Deadline: 2025-02-28 (End of Calendar Month)\\n\\nPlease arrange payment clearance today at the accounts counter or through digital bank transfer to ensure uninterrupted hostel accommodation.\\n\\nWarm regards,\\nSomnathRecorders Accounts Office\",\n        \"status\": \"automated_sent\",\n        \"id\": 19,\n        \"sentAt\": \"2026-11-07T14:07:22.324Z\"\n      }\n    ]\n  }\n}",
+      "status": "completed",
+      "createdAt": "2026-11-07T14:08:18.092Z"
+    },
+    {
+      "id": 2,
+      "filename": "hostel_database_backup_2026-11-03T13-56-40-017Z.json",
+      "backupType": "manual_export",
+      "fileSizeBytes": 14524,
+      "tablesCount": 11,
+      "recordsCount": 29,
+      "checksum": "5c953cf5491b3e74c6c557c0763161b13814f564d8f951d4b3febb3cb28d2c12",
+      "payloadJson": "{\n  \"version\": \"2.0\",\n  \"database\": \"PostgreSQL Cloud SQL & Independent Storage Engine\",\n  \"exportedAt\": \"2026-11-03T13:56:40.016Z\",\n  \"metadata\": {\n    \"system\": \"Classical Hostel Management System\",\n    \"authoritativeStore\": \"Encrypted & Independent Daily Backups Enabled\"\n  },\n  \"counts\": {\n    \"users\": 5,\n    \"hostels\": 2,\n    \"rooms\": 6,\n    \"students\": 4,\n    \"customFields\": 5,\n    \"invoices\": 4,\n    \"payments\": 3,\n    \"emailReminders\": 1\n  },\n  \"tables\": {\n    \"users\": [\n      {\n        \"id\": 1,\n        \"uid\": \"system_admin_uid\",\n        \"email\": \"admin@dormis.edu\",\n        \"fullName\": \"System Administrator\",\n        \"role\": \"admin\",\n        \"phone\": \"+1 (555) 100-2000\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\",\n        \"updatedAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"uid\": \"system_warden_uid\",\n        \"email\": \"warden@dormis.edu\",\n        \"fullName\": \"Arthur Pendelton (Warden)\",\n        \"role\": \"warden\",\n        \"phone\": \"+1 (555) 234-5678\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\",\n        \"updatedAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 3,\n        \"uid\": \"system_accountant_uid\",\n        \"email\": \"accountant@dormis.edu\",\n        \"fullName\": \"Accounts Officer\",\n        \"role\": \"accountant\",\n        \"phone\": \"+1 (555) 345-6789\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\",\n        \"updatedAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 4,\n        \"uid\": \"system_student_uid\",\n        \"email\": \"julian.vance@example.edu\",\n        \"fullName\": \"Julian Vance\",\n        \"role\": \"student\",\n        \"phone\": \"+1 (555) 456-7890\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\",\n        \"updatedAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 5,\n        \"uid\": \"user_gautam_jayswal\",\n        \"email\": \"jayswalgautam4@gmail.com\",\n        \"fullName\": \"Gautam Jayswal\",\n        \"role\": \"student\",\n        \"phone\": \"+977 980-0000000\",\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\",\n        \"updatedAt\": \"2025-01-01T00:00:00.000Z\"\n      }\n    ],\n    \"hostels\": [\n      {\n        \"id\": 1,\n        \"name\": \"Ashoka Residence (Block A - Boys)\",\n        \"type\": \"boys\",\n        \"address\": \"North Residential Quad, Campus Road\",\n        \"wardenName\": \"Arthur Pendelton\",\n        \"contactPhone\": \"+1 (555) 234-5678\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"name\": \"Lotus Wing (Block B - Girls)\",\n        \"type\": \"girls\",\n        \"address\": \"South Garden Quad, Campus Road\",\n        \"wardenName\": \"Eleanor Vance\",\n        \"contactPhone\": \"+1 (555) 987-6543\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      }\n    ],\n    \"rooms\": [\n      {\n        \"id\": 1,\n        \"hostelId\": 1,\n        \"roomNumber\": \"A-101\",\n        \"floor\": 1,\n        \"capacity\": 2,\n        \"defaultMonthlyFee\": \"500.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"hostelId\": 1,\n        \"roomNumber\": \"A-102\",\n        \"floor\": 1,\n        \"capacity\": 2,\n        \"defaultMonthlyFee\": \"480.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 3,\n        \"hostelId\": 1,\n        \"roomNumber\": \"A-201\",\n        \"floor\": 2,\n        \"capacity\": 3,\n        \"defaultMonthlyFee\": \"420.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 4,\n        \"hostelId\": 1,\n        \"roomNumber\": \"A-202\",\n        \"floor\": 2,\n        \"capacity\": 2,\n        \"defaultMonthlyFee\": \"520.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 5,\n        \"hostelId\": 2,\n        \"roomNumber\": \"B-101\",\n        \"floor\": 1,\n        \"capacity\": 2,\n        \"defaultMonthlyFee\": \"500.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 6,\n        \"hostelId\": 2,\n        \"roomNumber\": \"B-102\",\n        \"floor\": 1,\n        \"capacity\": 2,\n        \"defaultMonthlyFee\": \"500.00\",\n        \"status\": \"available\",\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      }\n    ],\n    \"students\": [\n      {\n        \"id\": 1,\n        \"userId\": 4,\n        \"admissionNumber\": \"ADM-2024-001\",\n        \"firstName\": \"Julian\",\n        \"lastName\": \"Vance\",\n        \"gender\": \"male\",\n        \"dob\": \"2003-05-14\",\n        \"email\": \"julian.vance@example.edu\",\n        \"phone\": \"+1 (555) 456-7890\",\n        \"emergencyContactName\": \"Robert Vance (Father)\",\n        \"emergencyContactPhone\": \"+1 (555) 456-9900\",\n        \"bloodGroup\": \"O+\",\n        \"homeAddress\": \"742 Evergreen Terrace, Springfield\",\n        \"roomId\": 1,\n        \"monthlyFee\": \"500.00\",\n        \"status\": \"active\",\n        \"admissionDate\": \"2024-08-15\",\n        \"vacatedDate\": null,\n        \"notes\": \"Engineering Scholar, Honors Resident\",\n        \"createdAt\": \"2024-08-15T00:00:00.000Z\",\n        \"updatedAt\": \"2024-08-15T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"userId\": 5,\n        \"admissionNumber\": \"ADM-2024-002\",\n        \"firstName\": \"Gautam\",\n        \"lastName\": \"Jayswal\",\n        \"gender\": \"male\",\n        \"dob\": \"2002-11-20\",\n        \"email\": \"jayswalgautam4@gmail.com\",\n        \"phone\": \"+977 980-1234567\",\n        \"emergencyContactName\": \"M. Jayswal\",\n        \"emergencyContactPhone\": \"+977 980-9998888\",\n        \"bloodGroup\": \"B+\",\n        \"homeAddress\": \"Main City Center, Ward 4\",\n        \"roomId\": 2,\n        \"monthlyFee\": \"480.00\",\n        \"status\": \"active\",\n        \"admissionDate\": \"2024-09-01\",\n        \"vacatedDate\": null,\n        \"notes\": \"Active resident with fee reminder preference for jayswalgautam4@gmail.com\",\n        \"createdAt\": \"2024-09-01T00:00:00.000Z\",\n        \"updatedAt\": \"2024-09-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 3,\n        \"userId\": null,\n        \"admissionNumber\": \"ADM-2024-003\",\n        \"firstName\": \"Marcus\",\n        \"lastName\": \"Sterling\",\n        \"gender\": \"male\",\n        \"dob\": \"2004-01-18\",\n        \"email\": \"marcus.s@example.edu\",\n        \"phone\": \"+1 (555) 678-1234\",\n        \"emergencyContactName\": \"Helen Sterling\",\n        \"emergencyContactPhone\": \"+1 (555) 678-5555\",\n        \"bloodGroup\": \"A+\",\n        \"homeAddress\": \"12 Kensington High St\",\n        \"roomId\": 1,\n        \"monthlyFee\": \"500.00\",\n        \"status\": \"active\",\n        \"admissionDate\": \"2024-08-20\",\n        \"vacatedDate\": null,\n        \"notes\": \"Quiet study floor requested\",\n        \"createdAt\": \"2024-08-20T00:00:00.000Z\",\n        \"updatedAt\": \"2024-08-20T00:00:00.000Z\"\n      },\n      {\n        \"id\": 4,\n        \"userId\": null,\n        \"admissionNumber\": \"ADM-2024-004\",\n        \"firstName\": \"Clara\",\n        \"lastName\": \"Oswald\",\n        \"gender\": \"female\",\n        \"dob\": \"2003-12-05\",\n        \"email\": \"clara.o@example.edu\",\n        \"phone\": \"+1 (555) 321-4321\",\n        \"emergencyContactName\": \"David Oswald\",\n        \"emergencyContactPhone\": \"+1 (555) 321-9999\",\n        \"bloodGroup\": \"AB+\",\n        \"homeAddress\": \"88 Baker Avenue\",\n        \"roomId\": 5,\n        \"monthlyFee\": \"500.00\",\n        \"status\": \"active\",\n        \"admissionDate\": \"2024-08-25\",\n        \"vacatedDate\": null,\n        \"notes\": \"Prefers ground floor room\",\n        \"createdAt\": \"2024-08-25T00:00:00.000Z\",\n        \"updatedAt\": \"2024-08-25T00:00:00.000Z\"\n      }\n    ],\n    \"customFields\": [\n      {\n        \"id\": 1,\n        \"entityType\": \"student\",\n        \"fieldName\": \"guardian_name\",\n        \"fieldLabel\": \"Guardian / Parent Name\",\n        \"fieldType\": \"text\",\n        \"isRequired\": true,\n        \"optionsJson\": null,\n        \"displayOrder\": 1,\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"entityType\": \"student\",\n        \"fieldName\": \"guardian_phone\",\n        \"fieldLabel\": \"Guardian Phone\",\n        \"fieldType\": \"text\",\n        \"isRequired\": true,\n        \"optionsJson\": null,\n        \"displayOrder\": 2,\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 3,\n        \"entityType\": \"student\",\n        \"fieldName\": \"department\",\n        \"fieldLabel\": \"Academic Department\",\n        \"fieldType\": \"dropdown\",\n        \"isRequired\": false,\n        \"optionsJson\": \"[\\\"Computer Science\\\",\\\"Mechanical Engineering\\\",\\\"Business Administration\\\",\\\"Biotechnology\\\",\\\"Architecture\\\"]\",\n        \"displayOrder\": 3,\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 4,\n        \"entityType\": \"student\",\n        \"fieldName\": \"dietary_preference\",\n        \"fieldLabel\": \"Mess & Dietary Preference\",\n        \"fieldType\": \"dropdown\",\n        \"isRequired\": false,\n        \"optionsJson\": \"[\\\"Standard / Non-Veg\\\",\\\"Vegetarian\\\",\\\"Vegan\\\",\\\"Halal\\\",\\\"Jain\\\"]\",\n        \"displayOrder\": 4,\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 5,\n        \"entityType\": \"student\",\n        \"fieldName\": \"laptop_serial_no\",\n        \"fieldLabel\": \"Registered Laptop Serial #\",\n        \"fieldType\": \"text\",\n        \"isRequired\": false,\n        \"optionsJson\": null,\n        \"displayOrder\": 5,\n        \"isActive\": true,\n        \"createdAt\": \"2025-01-01T00:00:00.000Z\"\n      }\n    ],\n    \"studentFieldValues\": [\n      {\n        \"id\": 1,\n        \"studentId\": 1,\n        \"fieldId\": 1,\n        \"fieldValue\": \"Robert Vance\",\n        \"updatedAt\": \"2024-08-15T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"studentId\": 1,\n        \"fieldId\": 2,\n        \"fieldValue\": \"+1 (555) 456-9900\",\n        \"updatedAt\": \"2024-08-15T00:00:00.000Z\"\n      },\n      {\n        \"id\": 3,\n        \"studentId\": 1,\n        \"fieldId\": 3,\n        \"fieldValue\": \"Computer Science\",\n        \"updatedAt\": \"2024-08-15T00:00:00.000Z\"\n      },\n      {\n        \"id\": 4,\n        \"studentId\": 1,\n        \"fieldId\": 4,\n        \"fieldValue\": \"Vegetarian\",\n        \"updatedAt\": \"2024-08-15T00:00:00.000Z\"\n      },\n      {\n        \"id\": 5,\n        \"studentId\": 2,\n        \"fieldId\": 1,\n        \"fieldValue\": \"M. Jayswal\",\n        \"updatedAt\": \"2024-09-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 6,\n        \"studentId\": 2,\n        \"fieldId\": 2,\n        \"fieldValue\": \"+977 980-9998888\",\n        \"updatedAt\": \"2024-09-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 7,\n        \"studentId\": 2,\n        \"fieldId\": 3,\n        \"fieldValue\": \"Computer Science\",\n        \"updatedAt\": \"2024-09-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 8,\n        \"studentId\": 2,\n        \"fieldId\": 4,\n        \"fieldValue\": \"Standard / Non-Veg\",\n        \"updatedAt\": \"2024-09-01T00:00:00.000Z\"\n      }\n    ],\n    \"feeAdjustments\": [\n      {\n        \"id\": 1,\n        \"studentId\": 1,\n        \"oldFee\": \"0.00\",\n        \"newFee\": \"500.00\",\n        \"effectiveFrom\": \"2024-08-15\",\n        \"reason\": \"Initial admission fee structure\",\n        \"adjustedBy\": 1,\n        \"createdAt\": \"2024-08-15T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"studentId\": 2,\n        \"oldFee\": \"0.00\",\n        \"newFee\": \"480.00\",\n        \"effectiveFrom\": \"2024-09-01\",\n        \"reason\": \"Initial admission fee structure (Block A-102)\",\n        \"adjustedBy\": 1,\n        \"createdAt\": \"2024-09-01T00:00:00.000Z\"\n      }\n    ],\n    \"invoices\": [\n      {\n        \"id\": 1,\n        \"invoiceNumber\": \"INV-202502-0001\",\n        \"studentId\": 1,\n        \"billingMonth\": \"2025-02\",\n        \"dueDate\": \"2025-02-10\",\n        \"amountDue\": \"500.00\",\n        \"amountPaid\": \"500.00\",\n        \"status\": \"paid\",\n        \"createdAt\": \"2025-02-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"invoiceNumber\": \"INV-202502-0002\",\n        \"studentId\": 2,\n        \"billingMonth\": \"2025-02\",\n        \"dueDate\": \"2025-02-10\",\n        \"amountDue\": \"480.00\",\n        \"amountPaid\": \"0.00\",\n        \"status\": \"pending\",\n        \"createdAt\": \"2025-02-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 3,\n        \"invoiceNumber\": \"INV-202502-0003\",\n        \"studentId\": 3,\n        \"billingMonth\": \"2025-02\",\n        \"dueDate\": \"2025-02-10\",\n        \"amountDue\": \"500.00\",\n        \"amountPaid\": \"250.00\",\n        \"status\": \"partial\",\n        \"createdAt\": \"2025-02-01T00:00:00.000Z\"\n      },\n      {\n        \"id\": 4,\n        \"invoiceNumber\": \"INV-202502-0004\",\n        \"studentId\": 4,\n        \"billingMonth\": \"2025-02\",\n        \"dueDate\": \"2025-02-10\",\n        \"amountDue\": \"500.00\",\n        \"amountPaid\": \"500.00\",\n        \"status\": \"paid\",\n        \"createdAt\": \"2025-02-01T00:00:00.000Z\"\n      }\n    ],\n    \"payments\": [\n      {\n        \"id\": 1,\n        \"receiptNumber\": \"RCP-2025-0001\",\n        \"invoiceId\": 1,\n        \"studentId\": 1,\n        \"amount\": \"500.00\",\n        \"paymentMethod\": \"upi_bank_transfer\",\n        \"transactionReference\": \"TXN-BANK-998231\",\n        \"paymentDate\": \"2025-02-05\",\n        \"collectedBy\": 3,\n        \"remarks\": \"Online Bank Transfer settlement for Feb 2025\",\n        \"createdAt\": \"2025-02-05T10:30:00.000Z\"\n      },\n      {\n        \"id\": 2,\n        \"receiptNumber\": \"RCP-2025-0002\",\n        \"invoiceId\": 3,\n        \"studentId\": 3,\n        \"amount\": \"250.00\",\n        \"paymentMethod\": \"cash\",\n        \"transactionReference\": \"CASH-REC-104\",\n        \"paymentDate\": \"2025-02-07\",\n        \"collectedBy\": 3,\n        \"remarks\": \"Partial cash instalment for Feb 2025\",\n        \"createdAt\": \"2025-02-07T14:15:00.000Z\"\n      },\n      {\n        \"id\": 3,\n        \"receiptNumber\": \"RCP-2025-0003\",\n        \"invoiceId\": 4,\n        \"studentId\": 4,\n        \"amount\": \"500.00\",\n        \"paymentMethod\": \"card\",\n        \"transactionReference\": \"POS-AUTH-77610\",\n        \"paymentDate\": \"2025-02-08\",\n        \"collectedBy\": 3,\n        \"remarks\": \"Debit card POS swipe at accounts counter\",\n        \"createdAt\": \"2025-02-08T11:00:00.000Z\"\n      }\n    ],\n    \"emailReminders\": [\n      {\n        \"id\": 1,\n        \"studentId\": 2,\n        \"invoiceId\": 2,\n        \"recipientEmail\": \"jayswalgautam4@gmail.com\",\n        \"subject\": \"Fee Payment Notice: Hostel Dues - Gautam Jayswal\",\n        \"body\": \"Dear Gautam,\\n\\nThis is a formal reminder regarding your hostel accommodation fee of $480.00 for 2025-02 (Invoice: INV-202502-0002, Due: 2025-02-10).\\n\\nPlease ensure your dues are cleared at the accounts office or via online transfer.\\n\\nWarm regards,\\nHostel Administration\",\n        \"status\": \"sent\",\n        \"sentAt\": \"2025-02-03T09:00:00.000Z\"\n      }\n    ]\n  }\n}",
+      "status": "completed",
+      "createdAt": "2026-11-03T13:56:40.017Z"
+    },
+    {
+      "id": 1,
+      "filename": "hostel_db_automated_daily_snapshot.json",
+      "backupType": "daily_automated",
+      "fileSizeBytes": 4280,
+      "tablesCount": 11,
+      "recordsCount": 32,
+      "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "payloadJson": null,
+      "status": "completed",
+      "createdAt": "2025-02-01T04:00:00.000Z"
+    }
+  ],
+  "activityLogs": [
+    {
+      "userId": 1,
+      "action": "DELETE_STUDENT_EVERYWHERE",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Permanently deleted student Rohit Sharma (ADM-2026-002) and all associated records from everywhere.",
+      "id": 42,
+      "createdAt": "2026-11-07T14:30:08.875Z"
+    },
+    {
+      "userId": 1,
+      "action": "RECORD_PAYMENT",
+      "entityType": "payment",
+      "entityId": 1,
+      "details": "Recorded payment of 500.00 (REC-20261107-818FF5) for student Rohit Sharma",
+      "id": 41,
+      "createdAt": "2026-11-07T14:30:08.861Z"
+    },
+    {
+      "userId": 1,
+      "action": "REGISTER_STUDENT",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Registered student Rohit Sharma (ADM-2026-002) in room 105",
+      "id": 40,
+      "createdAt": "2026-11-07T14:30:08.826Z"
+    },
+    {
+      "userId": 6,
+      "action": "ADJUST_STUDENT_FEE",
+      "entityType": "student",
+      "entityId": 1,
+      "details": "Adjusted monthly fee from $500.00 to $20000.00. Reason: gggg",
+      "id": 39,
+      "createdAt": "2026-11-07T14:21:23.393Z"
+    },
+    {
+      "userId": 6,
+      "action": "REGISTER_STUDENT",
+      "entityType": "student",
+      "entityId": 1,
+      "details": "Registered student Gautam Jayswal (ADM-2026-001) in room 122",
+      "id": 38,
+      "createdAt": "2026-11-07T14:20:57.047Z"
+    },
+    {
+      "userId": 6,
+      "action": "DELETE_STUDENT_EVERYWHERE",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Permanently deleted student Gautam Jayswal (ADM-2024-002) and all associated records from everywhere.",
+      "id": 37,
+      "createdAt": "2026-11-07T14:20:26.814Z"
+    },
+    {
+      "userId": 6,
+      "action": "RECORD_PAYMENT",
+      "entityType": "payment",
+      "entityId": 2,
+      "details": "Recorded payment of 20000.00 (REC-20260331-9A8142) for student Gautam Jayswal",
+      "id": 36,
+      "createdAt": "2026-11-07T14:18:59.295Z"
+    },
+    {
+      "userId": 1,
+      "action": "DELETE_STUDENT_EVERYWHERE",
+      "entityType": "student",
+      "entityId": 3,
+      "details": "Permanently deleted student New Test Student (ADM-2026-002) and all associated records from everywhere.",
+      "id": 35,
+      "createdAt": "2026-11-07T14:18:20.222Z"
+    },
+    {
+      "userId": 1,
+      "action": "REGISTER_STUDENT",
+      "entityType": "student",
+      "entityId": 3,
+      "details": "Registered student New Test Student (ADM-2026-002) in room 101",
+      "id": 34,
+      "createdAt": "2026-11-07T14:17:56.083Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 20,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 33,
+      "createdAt": "2026-11-07T14:15:43.059Z"
+    },
+    {
+      "userId": 1,
+      "action": "CREATE_BACKUP",
+      "entityType": "backup",
+      "entityId": 3,
+      "details": "Created independent database backup hostel_database_backup_2026-11-07T14-08-18-092Z.json (25 records, 24585 bytes)",
+      "id": 32,
+      "createdAt": "2026-11-07T14:08:18.094Z"
+    },
+    {
+      "userId": 1,
+      "action": "RECORD_PAYMENT",
+      "entityType": "payment",
+      "entityId": 1,
+      "details": "Recorded payment of 10000.00 (REC-20261106-659DB7) for student Gautam Jayswal",
+      "id": 31,
+      "createdAt": "2026-11-07T14:08:00.292Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 19,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 30,
+      "createdAt": "2026-11-07T14:07:22.325Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 18,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 29,
+      "createdAt": "2026-11-07T13:56:43.883Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 17,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 28,
+      "createdAt": "2026-11-05T13:25:53.439Z"
+    },
+    {
+      "userId": 1,
+      "action": "UPDATE_STUDENT",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Updated student record for Gautam Jayswal",
+      "id": 27,
+      "createdAt": "2026-11-05T13:25:28.425Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 16,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 26,
+      "createdAt": "2026-11-05T13:25:23.295Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 15,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 25,
+      "createdAt": "2026-11-05T13:19:44.832Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 15,
+      "details": "Automated Gmail reminder dispatched to marcus.s@example.edu for invoice INV-202502-0003 (1 day before deadline 2025-02-28)",
+      "id": 24,
+      "createdAt": "2026-11-05T13:04:36.934Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 14,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 23,
+      "createdAt": "2026-11-05T13:04:36.931Z"
+    },
+    {
+      "userId": 1,
+      "action": "UPDATE_STUDENT",
+      "entityType": "student",
+      "entityId": 1,
+      "details": "Updated student record for Julian Vance",
+      "id": 22,
+      "createdAt": "2026-11-05T12:53:13.591Z"
+    },
+    {
+      "userId": 1,
+      "action": "RECORD_PAYMENT",
+      "entityType": "payment",
+      "entityId": 4,
+      "details": "Recorded payment of 200.00 (REC-20261105-1834A7) for student Julian Vance",
+      "id": 21,
+      "createdAt": "2026-11-05T12:53:01.048Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 13,
+      "details": "Automated Gmail reminder dispatched to marcus.s@example.edu for invoice INV-202502-0003 (1 day before deadline 2025-02-28)",
+      "id": 20,
+      "createdAt": "2026-11-05T12:52:44.955Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 12,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 19,
+      "createdAt": "2026-11-05T12:52:44.954Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 11,
+      "details": "Automated Gmail reminder dispatched to marcus.s@example.edu for invoice INV-202502-0003 (1 day before deadline 2025-02-28)",
+      "id": 18,
+      "createdAt": "2026-11-05T12:41:29.179Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 10,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 17,
+      "createdAt": "2026-11-05T12:41:29.178Z"
+    },
+    {
+      "userId": 1,
+      "action": "DELETE_STUDENT_PERMANENT",
+      "entityType": "student",
+      "entityId": 5,
+      "details": "Permanently deleted student Aarav Sharma (ADM-2026-005)",
+      "id": 16,
+      "createdAt": "2026-11-04T13:25:21.645Z"
+    },
+    {
+      "userId": 1,
+      "action": "UPDATE_STUDENT",
+      "entityType": "student",
+      "entityId": 5,
+      "details": "Updated student record for Aarav Sharma",
+      "id": 15,
+      "createdAt": "2026-11-04T13:25:16.931Z"
+    },
+    {
+      "userId": 1,
+      "action": "REGISTER_STUDENT",
+      "entityType": "student",
+      "entityId": 5,
+      "details": "Registered student Aarav Sharma (ADM-2026-005) in room 104",
+      "id": 14,
+      "createdAt": "2026-11-04T13:25:01.369Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 9,
+      "details": "Automated Gmail reminder dispatched to marcus.s@example.edu for invoice INV-202502-0003 (1 day before deadline 2025-02-28)",
+      "id": 13,
+      "createdAt": "2026-11-04T13:24:56.037Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 8,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 12,
+      "createdAt": "2026-11-04T13:24:56.036Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 7,
+      "details": "Automated Gmail reminder dispatched to marcus.s@example.edu for invoice INV-202502-0003 (1 day before deadline 2025-02-28)",
+      "id": 11,
+      "createdAt": "2026-11-04T13:18:44.925Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 6,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 10,
+      "createdAt": "2026-11-04T13:18:44.924Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 5,
+      "details": "Automated Gmail reminder dispatched to marcus.s@example.edu for invoice INV-202502-0003 (1 day before deadline 2025-02-28)",
+      "id": 9,
+      "createdAt": "2026-11-04T11:02:45.644Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 4,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 8,
+      "createdAt": "2026-11-04T11:02:45.643Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 3,
+      "details": "Automated Gmail reminder dispatched to marcus.s@example.edu for invoice INV-202502-0003 (1 day before deadline 2025-02-28)",
+      "id": 7,
+      "createdAt": "2026-11-04T11:02:36.665Z"
+    },
+    {
+      "userId": 1,
+      "action": "AUTOMATED_REMINDER_TRIGGERED",
+      "entityType": "email_reminder",
+      "entityId": 2,
+      "details": "Automated Gmail reminder dispatched to jayswalgautam4@gmail.com for invoice INV-202502-0002 (1 day before deadline 2025-02-28)",
+      "id": 6,
+      "createdAt": "2026-11-04T11:02:36.664Z"
+    },
+    {
+      "userId": 1,
+      "action": "UPDATE_STUDENT",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Updated student record for Gautam Jayswal",
+      "id": 5,
+      "createdAt": "2026-11-03T13:56:58.538Z"
+    },
+    {
+      "userId": 1,
+      "action": "VACATE_STUDENT",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Vacated student Gautam Jayswal (ADM-2024-002)",
+      "id": 4,
+      "createdAt": "2026-11-03T13:56:55.266Z"
+    },
+    {
+      "userId": 1,
+      "action": "UPDATE_STUDENT",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Updated student record for Gautam Jayswal",
+      "id": 3,
+      "createdAt": "2026-11-03T13:56:47.226Z"
+    },
+    {
+      "userId": 1,
+      "action": "CREATE_BACKUP",
+      "entityType": "backup",
+      "entityId": 2,
+      "details": "Created independent database backup hostel_database_backup_2026-11-03T13-56-40-017Z.json (29 records, 14524 bytes)",
+      "id": 2,
+      "createdAt": "2026-11-03T13:56:40.018Z"
+    },
+    {
+      "id": 1,
+      "userId": 1,
+      "action": "SYSTEM_INITIALIZATION",
+      "entityType": "system",
+      "entityId": null,
+      "details": "Hostel Management System initialized with verified baseline data.",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    }
+  ]
+}

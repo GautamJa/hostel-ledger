@@ -9,9 +9,51 @@ export interface UserEntity {
   fullName: string;
   role: 'admin' | 'warden' | 'accountant' | 'student';
   phone?: string | null;
+  passwordHash?: string;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
+}
+
+export function hashPassword(password: string): string {
+  return crypto.createHash('sha256').update(`somnath_salt_${password}`).digest('hex');
+}
+
+export function verifyPassword(password: string, hash?: string): boolean {
+  if (!hash) return false;
+  return hashPassword(password) === hash;
+}
+
+const AUTH_SECRET = process.env.AUTH_SECRET || 'somnath_recorders_auth_secret_key_2026';
+
+export function generateSessionToken(user: UserEntity): string {
+  const payload = JSON.stringify({
+    userId: user.id,
+    email: user.email,
+    role: user.role,
+    fullName: user.fullName,
+    exp: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 days
+  });
+  const b64Payload = Buffer.from(payload).toString('base64url');
+  const signature = crypto.createHmac('sha256', AUTH_SECRET).update(b64Payload).digest('base64url');
+  return `sr_token_${b64Payload}.${signature}`;
+}
+
+export function verifySessionToken(token: string): { userId: number; email: string; role: string; fullName: string } | null {
+  if (!token || !token.startsWith('sr_token_')) return null;
+  const raw = token.slice('sr_token_'.length);
+  const parts = raw.split('.');
+  if (parts.length !== 2) return null;
+  const [b64Payload, signature] = parts;
+  const expectedSig = crypto.createHmac('sha256', AUTH_SECRET).update(b64Payload).digest('base64url');
+  if (signature !== expectedSig) return null;
+  try {
+    const payload = JSON.parse(Buffer.from(b64Payload, 'base64url').toString('utf8'));
+    if (payload.exp && Date.now() > payload.exp) return null;
+    return payload;
+  } catch {
+    return null;
+  }
 }
 
 export interface HostelEntity {
@@ -432,6 +474,52 @@ class DataStore {
                 inv.amountDue = Number(currentFee).toFixed(2);
               }
             }
+          }
+
+          // Guarantee admin account for jayswalgautam4@gmail.com with password Gautam123
+          parsed.users = parsed.users || [];
+          const adminIdx = parsed.users.findIndex((u: any) => u.email.toLowerCase() === 'jayswalgautam4@gmail.com');
+          if (adminIdx >= 0) {
+            parsed.users[adminIdx].role = 'admin';
+            parsed.users[adminIdx].fullName = parsed.users[adminIdx].fullName || 'Gautam Jayswal';
+            parsed.users[adminIdx].passwordHash = hashPassword('Gautam123');
+            parsed.users[adminIdx].isActive = true;
+          } else {
+            const nextId = parsed.users.reduce((m: number, u: any) => Math.max(m, u.id || 0), 0) + 1;
+            parsed.users.push({
+              id: nextId,
+              uid: 'user_admin_gautam',
+              email: 'jayswalgautam4@gmail.com',
+              fullName: 'Gautam Jayswal',
+              role: 'admin',
+              passwordHash: hashPassword('Gautam123'),
+              phone: '+977 982-5227507',
+              isActive: true,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+            });
+          }
+
+          // Guarantee student account for student@dormis.edu with password Student123
+          const studentIdx = parsed.users.findIndex((u: any) => u.email.toLowerCase() === 'student@dormis.edu');
+          if (studentIdx >= 0) {
+            parsed.users[studentIdx].role = 'student';
+            parsed.users[studentIdx].passwordHash = hashPassword('Student123');
+            parsed.users[studentIdx].isActive = true;
+          } else {
+            const nextId = parsed.users.reduce((m: number, u: any) => Math.max(m, u.id || 0), 0) + 1;
+            parsed.users.push({
+              id: nextId,
+              uid: 'user_student_demo',
+              email: 'student@dormis.edu',
+              fullName: 'Julian Vance (Student)',
+              role: 'student',
+              passwordHash: hashPassword('Student123'),
+              phone: '+1 (555) 456-7890',
+              isActive: true,
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+            });
           }
 
           return parsed;

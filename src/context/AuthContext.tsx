@@ -18,7 +18,7 @@ export interface DbUser {
   role: UserRole;
   phone?: string | null;
   isActive: boolean;
-  createdAt: string;
+  createdAt?: string;
 }
 
 export interface StudentProfile {
@@ -26,11 +26,15 @@ export interface StudentProfile {
   admissionNumber: string;
   firstName: string;
   lastName: string;
+  gender?: string;
   email: string;
   phone: string;
   monthlyFee: string;
   roomId?: number | null;
   status: string;
+  admissionDate?: string;
+  homeAddress?: string | null;
+  room?: any;
 }
 
 interface AuthContextType {
@@ -39,7 +43,10 @@ interface AuthContextType {
   studentProfile: StudentProfile | null;
   loading: boolean;
   token: string | null;
+  isLoggedIn: boolean;
   googleAccessToken: string | null;
+  login: (email: string, password: string) => Promise<any>;
+  signup: (data: any) => Promise<any>;
   signInWithGoogle: () => Promise<string | null>;
   signOutUser: () => Promise<void>;
   refreshUser: () => Promise<void>;
@@ -53,38 +60,79 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [firebaseUser, setFirebaseUser] = useState<FirebaseUser | null>(null);
-  const [dbUser, setDbUser] = useState<DbUser | null>(null);
+  const [token, setToken] = useState<string | null>(() => {
+    return localStorage.getItem('sr_auth_token') || null;
+  });
+  const [dbUser, setDbUser] = useState<DbUser | null>(() => {
+    const cached = localStorage.getItem('sr_auth_user');
+    if (cached) {
+      try {
+        return JSON.parse(cached);
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  });
   const [studentProfile, setStudentProfile] = useState<StudentProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [token, setToken] = useState<string | null>(null);
   const [googleAccessToken, setGoogleAccessToken] = useState<string | null>(() => {
     return localStorage.getItem('google_access_token') || null;
   });
-  const [activeRoleOverride, setActiveRoleOverride] = useState<UserRole>('admin');
+  const [activeRoleOverride, setActiveRoleOverride] = useState<UserRole>(() => {
+    return (dbUser?.role as UserRole) || 'admin';
+  });
 
-  const activeRole: UserRole = activeRoleOverride;
+  // Effective role: strictly enforce student role for student accounts, while allowing admin to test views
+  const activeRole: UserRole = dbUser?.role === 'student' ? 'student' : (activeRoleOverride || dbUser?.role || 'admin');
 
-  const fetchProfile = async (idToken?: string | null, roleToFetch?: UserRole) => {
+  const isLoggedIn = Boolean(token && dbUser);
+
+  const fetchProfile = async (sessionToken?: string | null, roleToFetch?: UserRole) => {
+    const currentTok = sessionToken || token;
+    if (!currentTok) {
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await fetch('/api/auth/me', {
         headers: {
-          Authorization: `Bearer ${idToken || 'demo-token'}`,
+          Authorization: `Bearer ${currentTok}`,
           'x-active-role': roleToFetch || activeRole,
         },
       });
+
       if (res.ok) {
         const data = await res.json();
         setDbUser(data.user);
         setStudentProfile(data.studentProfile || null);
+        localStorage.setItem('sr_auth_user', JSON.stringify(data.user));
+        if (data.user?.role) {
+          setActiveRoleOverride(data.user.role);
+        }
+      } else if (res.status === 401) {
+        // Token expired or invalid
+        localStorage.removeItem('sr_auth_token');
+        localStorage.removeItem('sr_auth_user');
+        setToken(null);
+        setDbUser(null);
+        setStudentProfile(null);
       }
     } catch (err) {
       console.error('Error fetching /api/auth/me:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    // Initial profile fetch immediately
-    fetchProfile(token, activeRole);
+    // Check initial session
+    if (token) {
+      fetchProfile(token, activeRole);
+    } else {
+      setLoading(false);
+    }
 
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
@@ -92,35 +140,71 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         try {
           const idToken = await user.getIdToken();
           setToken(idToken);
+          localStorage.setItem('sr_auth_token', idToken);
           await fetchProfile(idToken, activeRole);
         } catch (error) {
-          console.error('Error getting token:', error);
+          console.error('Error getting Firebase token:', error);
         }
-      } else {
-        setFirebaseUser(null);
-        setToken(null);
-        setGoogleAccessToken(null);
-        localStorage.removeItem('google_access_token');
-        await fetchProfile('demo-token', activeRole);
       }
-      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
+  const login = async (email: string, password: string) => {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'Failed to sign in. Please verify your email and password.');
+    }
+
+    setToken(data.token);
+    setDbUser(data.user);
+    setStudentProfile(data.studentProfile || null);
+    setActiveRoleOverride(data.user.role);
+    localStorage.setItem('sr_auth_token', data.token);
+    localStorage.setItem('sr_auth_user', JSON.stringify(data.user));
+    return data;
+  };
+
+  const signup = async (formData: any) => {
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'Registration failed.');
+    }
+
+    setToken(data.token);
+    setDbUser(data.user);
+    setStudentProfile(data.studentProfile || null);
+    setActiveRoleOverride('student');
+    localStorage.setItem('sr_auth_token', data.token);
+    localStorage.setItem('sr_auth_user', JSON.stringify(data.user));
+    return data;
+  };
+
   const handleRoleChange = (newRole: UserRole) => {
+    if (dbUser?.role === 'student') return; // Students cannot change role
     setActiveRoleOverride(newRole);
     fetchProfile(token, newRole);
   };
 
   const refreshUser = async () => {
-    let currentToken = token;
-    if (firebaseUser) {
-      currentToken = await firebaseUser.getIdToken(true);
-      setToken(currentToken);
-    }
-    await fetchProfile(currentToken, activeRole);
+    await fetchProfile(token, activeRole);
   };
 
   const signInWithGoogle = async (): Promise<string | null> => {
@@ -141,14 +225,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signOutUser = async () => {
     try {
-      await signOut(auth);
+      if (firebaseUser) {
+        await signOut(auth);
+      }
+    } catch (error) {
+      console.warn('Firebase signout error:', error);
+    } finally {
       setFirebaseUser(null);
       setToken(null);
+      setDbUser(null);
+      setStudentProfile(null);
       setGoogleAccessToken(null);
+      localStorage.removeItem('sr_auth_token');
+      localStorage.removeItem('sr_auth_user');
       localStorage.removeItem('google_access_token');
-      await fetchProfile('demo-token', activeRole);
-    } catch (error) {
-      console.error('Sign-out error:', error);
     }
   };
 
@@ -188,15 +278,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const apiFetch = async (path: string, options: RequestInit = {}) => {
-    let currentToken = token;
-    if (firebaseUser) {
-      try {
-        currentToken = await firebaseUser.getIdToken();
-        setToken(currentToken);
-      } catch (e) {
-        console.warn('Could not refresh Firebase token, using fallback:', e);
-      }
-    }
+    const currentToken = token;
 
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
@@ -210,9 +292,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       headers,
     });
 
-    const data = await response.json();
+    const contentType = response.headers.get('content-type') || '';
+    let data: any = null;
+    if (contentType.includes('application/json')) {
+      data = await response.json().catch(() => ({}));
+    } else {
+      const text = await response.text();
+      if (!response.ok) {
+        throw new Error(`Server error (${response.status}): ${text.slice(0, 120)}`);
+      }
+      return text;
+    }
+
     if (!response.ok) {
-      throw new Error(data.error || `Request failed with status ${response.status}`);
+      if (response.status === 401 && token) {
+        // Sign out if session expired
+        signOutUser();
+      }
+      throw new Error(data?.error || `Request failed with status ${response.status}`);
     }
     return data;
   };
@@ -225,7 +322,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         studentProfile,
         loading,
         token,
+        isLoggedIn,
         googleAccessToken,
+        login,
+        signup,
         signInWithGoogle,
         signOutUser,
         refreshUser,

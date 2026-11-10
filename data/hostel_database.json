@@ -49,11 +49,12 @@
       "uid": "user_gautam_jayswal",
       "email": "jayswalgautam4@gmail.com",
       "fullName": "Gautam Jayswal",
-      "role": "student",
+      "role": "admin",
       "phone": "+977 980-0000000",
       "isActive": true,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-01-01T00:00:00.000Z"
+      "updatedAt": "2025-01-01T00:00:00.000Z",
+      "passwordHash": "15530d5f0a14dc81a7b0b9a05a50526c6e9eaf695fb7728bef74f8ec467839ad"
     },
     {
       "uid": "0vMvOzUiqTNMa4h0obz0AYHZr732",
@@ -65,6 +66,30 @@
       "id": 6,
       "createdAt": "2026-11-05T12:41:36.428Z",
       "updatedAt": "2026-11-05T12:41:36.428Z"
+    },
+    {
+      "id": 7,
+      "uid": "user_student_demo",
+      "email": "student@dormis.edu",
+      "fullName": "Julian Vance (Student)",
+      "role": "student",
+      "passwordHash": "f1c4bb6c851c85a3b4da0e16a5d721498086166fbc2615644d1dde1126a3e8cb",
+      "phone": "+1 (555) 456-7890",
+      "isActive": true,
+      "createdAt": "2026-11-10T12:19:29.897Z",
+      "updatedAt": "2026-11-10T12:19:29.898Z"
+    },
+    {
+      "uid": "user_1794313203187_3mu7r",
+      "email": "nabin.shrestha@example.com",
+      "fullName": "Nabin Shrestha",
+      "role": "student",
+      "phone": "+977 981-234567",
+      "passwordHash": "2436c3e3892ffbd06d7ca9e4dfb8cf668f9fe95a27cef68044c9e818987dcdec",
+      "isActive": true,
+      "id": 8,
+      "createdAt": "2026-11-10T12:20:03.187Z",
+      "updatedAt": "2026-11-10T12:20:03.187Z"
     }
   ],
   "hostels": [
@@ -197,6 +222,26 @@
       "status": "available",
       "id": 11,
       "createdAt": "2026-11-07T14:30:08.823Z"
+    },
+    {
+      "hostelId": 1,
+      "roomNumber": "106",
+      "floor": 1,
+      "capacity": 4,
+      "defaultMonthlyFee": "500.00",
+      "status": "available",
+      "id": 12,
+      "createdAt": "2026-11-10T11:35:32.347Z"
+    },
+    {
+      "hostelId": 1,
+      "roomNumber": "102",
+      "floor": 1,
+      "capacity": 4,
+      "defaultMonthlyFee": "500.00",
+      "status": "available",
+      "id": 13,
+      "createdAt": "2026-11-10T12:03:39.704Z"
     }
   ],
   "students": [
@@ -309,19 +354,7 @@
       "createdAt": "2026-11-07T14:21:23.392Z"
     }
   ],
-  "invoices": [
-    {
-      "invoiceNumber": "INV-202611-0001",
-      "studentId": 1,
-      "billingMonth": "2026-11",
-      "dueDate": "2026-11-30",
-      "amountDue": "20000.00",
-      "amountPaid": "0.00",
-      "status": "pending",
-      "id": 1,
-      "createdAt": "2026-11-07T14:20:57.046Z"
-    }
-  ],
+  "invoices": [],
   "payments": [],
   "emailReminders": [],
   "backups": [
@@ -363,6 +396,87 @@
     }
   ],
   "activityLogs": [
+    {
+      "userId": 7,
+      "action": "USER_LOGIN",
+      "entityType": "auth",
+      "entityId": 7,
+      "details": "Julian Vance (Student) logged in successfully as STUDENT",
+      "id": 51,
+      "createdAt": "2026-11-10T12:38:49.602Z"
+    },
+    {
+      "userId": 1,
+      "action": "DELETE_STUDENT_EVERYWHERE",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Permanently deleted student Nabin Shrestha (ADM-2026-008) and all associated records from everywhere.",
+      "id": 50,
+      "createdAt": "2026-11-10T12:20:08.645Z"
+    },
+    {
+      "userId": 8,
+      "action": "USER_SIGNUP",
+      "entityType": "auth",
+      "entityId": 8,
+      "details": "New resident student account created for Nabin Shrestha (nabin.shrestha@example.com)",
+      "id": 49,
+      "createdAt": "2026-11-10T12:20:03.190Z"
+    },
+    {
+      "userId": 7,
+      "action": "USER_LOGIN",
+      "entityType": "auth",
+      "entityId": 7,
+      "details": "Julian Vance (Student) logged in successfully as STUDENT",
+      "id": 48,
+      "createdAt": "2026-11-10T12:19:41.521Z"
+    },
+    {
+      "userId": 5,
+      "action": "USER_LOGIN",
+      "entityType": "auth",
+      "entityId": 5,
+      "details": "Gautam Jayswal logged in successfully as ADMIN",
+      "id": 47,
+      "createdAt": "2026-11-10T12:19:32.700Z"
+    },
+    {
+      "userId": 1,
+      "action": "DELETE_STUDENT_EVERYWHERE",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Permanently deleted student Aayush Sharma (ADM-2026-002) and all associated records from everywhere.",
+      "id": 46,
+      "createdAt": "2026-11-10T12:03:43.611Z"
+    },
+    {
+      "userId": 1,
+      "action": "REGISTER_STUDENT",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Registered student Aayush Sharma (ADM-2026-002) in room 102",
+      "id": 45,
+      "createdAt": "2026-11-10T12:03:39.709Z"
+    },
+    {
+      "userId": 1,
+      "action": "DELETE_STUDENT_EVERYWHERE",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Permanently deleted student Aarav Verma (ADM-2026-002) and all associated records from everywhere.",
+      "id": 44,
+      "createdAt": "2026-11-10T11:35:32.373Z"
+    },
+    {
+      "userId": 1,
+      "action": "REGISTER_STUDENT",
+      "entityType": "student",
+      "entityId": 2,
+      "details": "Registered student Aarav Verma (ADM-2026-002) in room 106",
+      "id": 43,
+      "createdAt": "2026-11-10T11:35:32.350Z"
+    },
     {
       "userId": 1,
       "action": "DELETE_STUDENT_EVERYWHERE",

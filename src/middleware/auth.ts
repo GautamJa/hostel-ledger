@@ -6,7 +6,7 @@ import { users } from '../db/schema.ts';
 import { eq } from 'drizzle-orm';
 
 import { isPostgresHealthy } from '../db/index.ts';
-import { dataStore } from '../server/dataStore.ts';
+import { dataStore, verifySessionToken } from '../server/dataStore.ts';
 
 export interface AuthRequest extends Request {
   user?: DecodedIdToken | { uid: string; email: string; name: string };
@@ -31,6 +31,34 @@ export const requireAuth = async (
   let token: string | null = null;
   if (authHeader && authHeader.startsWith('Bearer ')) {
     token = authHeader.split('Bearer ')[1].trim();
+  }
+
+  // 1. Check for signed SomnathRecorders session token
+  if (token && token.startsWith('sr_token_')) {
+    const session = verifySessionToken(token);
+    if (session) {
+      const dsUser = dataStore.getUserById(session.userId) || dataStore.getUserByEmail(session.email);
+      if (dsUser && dsUser.isActive) {
+        req.user = {
+          uid: dsUser.uid,
+          email: dsUser.email,
+          name: dsUser.fullName,
+        };
+        req.dbUser = {
+          id: dsUser.id,
+          uid: dsUser.uid,
+          email: dsUser.email,
+          fullName: dsUser.fullName,
+          role: dsUser.role, // strictly their database role!
+          phone: dsUser.phone || null,
+          isActive: dsUser.isActive,
+          createdAt: new Date(dsUser.createdAt),
+          updatedAt: new Date(dsUser.updatedAt),
+        };
+        return next();
+      }
+    }
+    return res.status(401).json({ error: 'Session expired or invalid. Please sign in again.' });
   }
 
   const roleKey = ['admin', 'warden', 'accountant', 'student'].includes(requestedRole) ? requestedRole : 'admin';
@@ -59,16 +87,20 @@ export const requireAuth = async (
           dbUser = inserted[0];
         }
 
-        req.dbUser = ['admin', 'warden', 'accountant', 'student'].includes(requestedRole)
-          ? { ...dbUser, role: requestedRole }
-          : dbUser;
+        // Protect against privilege escalation: only verified admins can switch active role view
+        const effectiveRole =
+          dbUser.role === 'admin'
+            ? (['admin', 'warden', 'accountant', 'student'].includes(requestedRole) ? requestedRole : dbUser.role)
+            : dbUser.role;
+
+        req.dbUser = { ...dbUser, role: effectiveRole };
         return next();
       } else {
         // Use dataStore
         let dsUser = dataStore.getUserByUid(decodedToken.uid);
         if (!dsUser) {
           const totalUsers = dataStore.getUsers();
-          const role = totalUsers.length === 0 ? 'admin' : (requestedRole as any);
+          const role = totalUsers.length === 0 ? 'admin' : 'student';
           dsUser = dataStore.createUser({
             uid: decodedToken.uid,
             email: decodedToken.email || 'user@example.com',
@@ -78,12 +110,18 @@ export const requireAuth = async (
             isActive: true,
           });
         }
+
+        const effectiveRole =
+          dsUser.role === 'admin'
+            ? (['admin', 'warden', 'accountant', 'student'].includes(requestedRole) ? requestedRole : dsUser.role)
+            : dsUser.role;
+
         req.dbUser = {
           id: dsUser.id,
           uid: dsUser.uid,
           email: dsUser.email,
           fullName: dsUser.fullName,
-          role: requestedRole || dsUser.role,
+          role: effectiveRole,
           phone: dsUser.phone || null,
           isActive: dsUser.isActive,
           createdAt: new Date(dsUser.createdAt),

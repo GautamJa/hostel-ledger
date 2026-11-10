@@ -145,6 +145,7 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
     id: 0,
     admissionNumber: '',
     name: '',
+    gender: 'male',
     email: '',
     phone: '',
     roomNumber: '',
@@ -153,9 +154,10 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
     status: 'active' as 'active' | 'vacated' | 'suspended',
   });
 
-  // Register Form State (Clean 5 Fields: Room No manual, Phone, Gmail, Name, Address)
+  // Register Form State (Name, Gender, Gmail, Phone, Room No manual, Address)
   const [formData, setFormData] = useState({
     name: '',
+    gender: 'male',
     email: '',
     phone: '',
     roomNumber: '',
@@ -203,6 +205,7 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
   const handleOpenRegister = () => {
     setFormData({
       name: '',
+      gender: 'male',
       email: '',
       phone: '',
       roomNumber: '',
@@ -211,7 +214,7 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
     setRegisterModalOpen(true);
   };
 
-  // Submit Student Registration (5 Fields)
+  // Submit Student Registration (Name, Gender, Gmail, Phone, Room No, Address)
   const handleSubmitRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -237,6 +240,7 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
       id: student.id,
       admissionNumber: student.admissionNumber,
       name: `${student.firstName} ${student.lastName}`.trim(),
+      gender: student.gender || 'male',
       email: student.email,
       phone: student.phone,
       roomNumber: student.room?.roomNumber || '',
@@ -258,6 +262,7 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
         method: 'PUT',
         body: JSON.stringify({
           name: editFormData.name,
+          gender: editFormData.gender,
           email: editFormData.email,
           phone: editFormData.phone,
           roomNumber: editFormData.roomNumber,
@@ -625,6 +630,7 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
               <tr>
                 <th className="py-3 px-4">Admission #</th>
                 <th className="py-3 px-4">Student Name</th>
+                <th className="py-3 px-4">Gender</th>
                 <th className="py-3 px-4">Room No</th>
                 <th className="py-3 px-4">Contact</th>
                 <th className="py-3 px-4 text-right">Monthly Fee</th>
@@ -643,7 +649,7 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
             <tbody className="divide-y divide-zinc-800 text-zinc-300">
               {loading ? (
                 <tr>
-                  <td colSpan={7 + selectedCustomColumns.length} className="py-12 text-center text-zinc-500">
+                  <td colSpan={8 + selectedCustomColumns.length} className="py-12 text-center text-zinc-500">
                     <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-amber-500"></div>
                   </td>
                 </tr>
@@ -660,6 +666,19 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
                         {st.firstName} {st.lastName}
                       </div>
                       <div className="text-[11px] text-zinc-400 font-mono">{st.email}</div>
+                    </td>
+                    <td className="py-3 px-4">
+                      <span
+                        className={`inline-block px-2 py-0.5 rounded text-[10px] font-semibold capitalize ${
+                          st.gender === 'female'
+                            ? 'bg-purple-500/10 text-purple-300 border border-purple-500/30'
+                            : st.gender === 'other'
+                            ? 'bg-cyan-500/10 text-cyan-300 border border-cyan-500/30'
+                            : 'bg-blue-500/10 text-blue-300 border border-blue-500/30'
+                        }`}
+                      >
+                        {st.gender || 'male'}
+                      </span>
                     </td>
                     <td className="py-3 px-4">
                       {st.room ? (
@@ -785,7 +804,7 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
                 ))
               ) : (
                 <tr>
-                  <td colSpan={7 + selectedCustomColumns.length} className="py-10 text-center text-zinc-500">
+                  <td colSpan={8 + selectedCustomColumns.length} className="py-10 text-center text-zinc-500">
                     No students match your criteria.
                   </td>
                 </tr>
@@ -805,7 +824,7 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
               <div>
                 <h2 className="text-lg font-serif font-bold text-white">Register Student</h2>
                 <p className="text-xs text-zinc-400">
-                  Fill in room number, phone number, Gmail, name, and address.
+                  Fill in room number, phone number, Gmail, name, gender, and address.
                 </p>
               </div>
               <button
@@ -817,19 +836,35 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
             </div>
 
             <form onSubmit={handleSubmitRegister} className="mt-5 space-y-4">
-              {/* 1. Name */}
-              <div>
-                <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                  Name <span className="text-rose-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Gautam Jayswal"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full text-xs p-2.5 bg-zinc-950 border border-zinc-700 text-white rounded-lg focus:outline-none focus:border-amber-500"
-                />
+              {/* 1. Name & Gender */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                    Name <span className="text-rose-400">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Gautam Jayswal"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full text-xs p-2.5 bg-zinc-950 border border-zinc-700 text-white rounded-lg focus:outline-none focus:border-amber-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                    Gender <span className="text-rose-400">*</span>
+                  </label>
+                  <select
+                    value={formData.gender}
+                    onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                    className="w-full text-xs p-2.5 bg-zinc-950 border border-zinc-700 text-white rounded-lg focus:outline-none focus:border-amber-500 capitalize"
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
               </div>
 
               {/* 2. Gmail */}
@@ -1833,10 +1868,16 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
                               </span>
                             </div>
                             <div>
+                              <span className="text-zinc-500 block">Gender</span>
+                              <span className="font-semibold text-zinc-200 capitalize">
+                                {studentDetailsFull.gender || 'male'}
+                              </span>
+                            </div>
+                            <div>
                               <span className="text-zinc-500 block">Admission Date</span>
                               <span className="font-semibold text-zinc-300">{studentDetailsFull.admissionDate}</span>
                             </div>
-                            <div>
+                            <div className="sm:col-span-2">
                               <span className="text-zinc-500 block">Home Address</span>
                               <span className="text-zinc-300">{studentDetailsFull.homeAddress || 'Not recorded'}</span>
                             </div>
@@ -2030,18 +2071,34 @@ export const StudentsView: React.FC<StudentsViewProps> = ({ onOpenPaymentModal }
             </div>
 
             <form onSubmit={handleSubmitEdit} className="mt-5 space-y-4">
-              {/* 1. Name */}
-              <div>
-                <label className="block text-xs font-semibold text-zinc-300 mb-1">
-                  Student Name <span className="text-rose-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={editFormData.name}
-                  onChange={(e) => setEditFormData({ ...editFormData, name: e.target.value })}
-                  className="w-full text-xs p-2.5 bg-zinc-950 border border-zinc-700 text-white rounded-lg focus:outline-none focus:border-amber-500"
-                />
+              {/* 1. Name & Gender */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                    Student Name <span className="text-rose-400">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={editFormData.name}
+                    onChange={(e) => setEditFormData({ ...editFormData, name: e.target.value })}
+                    className="w-full text-xs p-2.5 bg-zinc-950 border border-zinc-700 text-white rounded-lg focus:outline-none focus:border-amber-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-zinc-300 mb-1">
+                    Gender <span className="text-rose-400">*</span>
+                  </label>
+                  <select
+                    value={editFormData.gender}
+                    onChange={(e) => setEditFormData({ ...editFormData, gender: e.target.value })}
+                    className="w-full text-xs p-2.5 bg-zinc-950 border border-zinc-700 text-white rounded-lg focus:outline-none focus:border-amber-500 capitalize"
+                  >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
               </div>
 
               {/* 2. Gmail */}

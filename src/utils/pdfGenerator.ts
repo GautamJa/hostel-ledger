@@ -28,6 +28,28 @@ export interface StudentAdmissionSlipData {
   department?: string;
 }
 
+/**
+ * Renders an authentic rotated watermark "Somnath" across the document page.
+ */
+export function drawSomnathWatermark(doc: jsPDF) {
+  doc.saveGraphicsState();
+
+  // Subtle slate-gray watermark that is distinct and legible without hindering text reading
+  doc.setTextColor(218, 224, 233);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(54);
+
+  // Large rotated watermark across document center
+  doc.text('Somnath', 105, 155, { align: 'center', angle: 35 });
+
+  // Secondary sub-stamp
+  doc.setFontSize(12);
+  doc.setTextColor(228, 233, 240);
+  doc.text('SOMNATHRECORDERS • VERIFIED AUTHENTIC', 105, 172, { align: 'center', angle: 35 });
+
+  doc.restoreGraphicsState();
+}
+
 export function generatePaymentReceiptPDF(data: PaymentReceiptData) {
   const doc = new jsPDF();
 
@@ -169,11 +191,14 @@ export function generatePaymentReceiptPDF(data: PaymentReceiptData) {
   doc.setFont('helvetica', 'bold');
   doc.text('Resident Student Signature', 135, 256);
 
-  // Official Stamp / Watermark
+  // Official Stamp & Somnath Watermark
   doc.setFontSize(18);
   doc.setTextColor(226, 232, 240);
   doc.setFont('helvetica', 'bold');
   doc.text('PAID & VERIFIED', 105, 190, { align: 'center' });
+
+  // Render "Somnath" Watermark
+  drawSomnathWatermark(doc);
 
   // Save/Download
   doc.save(`Receipt-${data.receiptNumber}.pdf`);
@@ -306,6 +331,9 @@ export function generateAdmissionSlipPDF(data: StudentAdmissionSlipData) {
   doc.setFontSize(9);
   doc.setFont('helvetica', 'bold');
   doc.text('Student / Guardian Signature', 135, 242);
+
+  // Render "Somnath" Watermark
+  drawSomnathWatermark(doc);
 
   doc.save(`AdmissionSlip-${data.admissionNumber}.pdf`);
 }

@@ -103,13 +103,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         },
       });
 
-      if (res.ok) {
-        const data = await res.json();
-        setDbUser(data.user);
-        setStudentProfile(data.studentProfile || null);
-        localStorage.setItem('sr_auth_user', JSON.stringify(data.user));
-        if (data.user?.role) {
-          setActiveRoleOverride(data.user.role);
+      const contentType = res.headers.get('content-type') || '';
+      if (res.ok && contentType.includes('application/json')) {
+        const data = await res.json().catch(() => null);
+        if (data?.user) {
+          setDbUser(data.user);
+          setStudentProfile(data.studentProfile || null);
+          localStorage.setItem('sr_auth_user', JSON.stringify(data.user));
+          if (data.user?.role) {
+            setActiveRoleOverride(data.user.role);
+          }
         }
       } else if (res.status === 401) {
         // Token expired or invalid
@@ -152,15 +155,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (email: string, password: string) => {
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    let res: Response;
+    try {
+      res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+    } catch (networkErr: any) {
+      throw new Error(`Unable to reach server (${networkErr?.message || 'Network error'}). Please try again.`);
+    }
 
-    const data = await res.json();
+    const contentType = res.headers.get('content-type') || '';
+    let data: any = {};
+    if (contentType.includes('application/json')) {
+      data = await res.json().catch(() => ({}));
+    } else {
+      const text = await res.text().catch(() => '');
+      if (!res.ok) {
+        throw new Error(`Server returned status ${res.status}. ${text ? text.slice(0, 100) : 'Authentication service is unavailable. Please try again shortly.'}`);
+      }
+    }
+
     if (!res.ok) {
       throw new Error(data.error || 'Failed to sign in. Please verify your email and password.');
     }
@@ -175,15 +193,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const signup = async (formData: any) => {
-    const res = await fetch('/api/auth/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+    let res: Response;
+    try {
+      res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+    } catch (networkErr: any) {
+      throw new Error(`Unable to reach server (${networkErr?.message || 'Network error'}). Please try again.`);
+    }
 
-    const data = await res.json();
+    const contentType = res.headers.get('content-type') || '';
+    let data: any = {};
+    if (contentType.includes('application/json')) {
+      data = await res.json().catch(() => ({}));
+    } else {
+      const text = await res.text().catch(() => '');
+      if (!res.ok) {
+        throw new Error(`Server returned status ${res.status}. ${text ? text.slice(0, 100) : 'Registration service is unavailable. Please try again shortly.'}`);
+      }
+    }
+
     if (!res.ok) {
       throw new Error(data.error || 'Registration failed.');
     }

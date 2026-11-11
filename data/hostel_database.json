@@ -397,6 +397,24 @@
   ],
   "activityLogs": [
     {
+      "userId": 5,
+      "action": "USER_LOGIN",
+      "entityType": "auth",
+      "entityId": 5,
+      "details": "Gautam Jayswal logged in successfully as ADMIN",
+      "id": 53,
+      "createdAt": "2026-11-11T12:56:11.012Z"
+    },
+    {
+      "userId": 5,
+      "action": "USER_LOGIN",
+      "entityType": "auth",
+      "entityId": 5,
+      "details": "Gautam Jayswal logged in successfully as ADMIN",
+      "id": 52,
+      "createdAt": "2026-11-11T12:54:32.852Z"
+    },
+    {
       "userId": 7,
       "action": "USER_LOGIN",
       "entityType": "auth",

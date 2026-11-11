@@ -1,4 +1,4 @@
-import { Router, Response } from 'express';
+import { Router, type Response } from 'express';
 import { db, isPostgresHealthy } from '../db/index.ts';
 import {
   users,
@@ -15,7 +15,7 @@ import {
   activityLogs,
 } from '../db/schema.ts';
 import { eq, desc, and } from 'drizzle-orm';
-import { AuthRequest, requireAuth, requireRole } from '../middleware/auth.ts';
+import { type AuthRequest, requireAuth, requireRole } from '../middleware/auth.ts';
 import { dataStore, hashPassword, verifyPassword, generateSessionToken } from './dataStore.ts';
 import { getMonthEndDeadline, reminderScheduler } from './reminderScheduler.ts';
 import crypto from 'crypto';

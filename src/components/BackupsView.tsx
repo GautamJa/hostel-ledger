@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext.tsx';
+import { clientDataStore } from '../lib/clientDataStore.ts';
 import {
   Database,
   Download,
@@ -84,19 +85,31 @@ export const BackupsView: React.FC = () => {
         ? `/api/backups/${backupId}/download?format=xlsx`
         : `/api/backups/${backupId}/download`;
 
-      const response = await fetch(url, {
-        headers: {
-          Authorization: `Bearer ${token || 'demo-token'}`,
-          'x-active-role': activeRole,
-        },
-      });
+      let blob: Blob | null = null;
+      try {
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token || 'demo-token'}`,
+            'x-active-role': activeRole,
+          },
+        });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || 'Failed to download backup payload');
+        if (response.ok) {
+          blob = await response.blob();
+        }
+      } catch {
+        // Fallback below
       }
 
-      const blob = await response.blob();
+      if (!blob) {
+        if (format === 'xlsx') {
+          blob = clientDataStore.exportFinancialLedgerToExcel();
+        } else {
+          const snapshot = JSON.stringify(clientDataStore.getState(), null, 2);
+          blob = new Blob([snapshot], { type: 'application/json' });
+        }
+      }
+
       const downloadUrl = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = downloadUrl;
@@ -123,19 +136,27 @@ export const BackupsView: React.FC = () => {
     try {
       setExportingExcel(true);
       setError(null);
-      const response = await fetch('/api/backups/export-excel', {
-        headers: {
-          Authorization: `Bearer ${token || 'demo-token'}`,
-          'x-active-role': activeRole,
-        },
-      });
 
-      if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.error || 'Failed to export Excel file');
+      let blob: Blob | null = null;
+      try {
+        const response = await fetch('/api/backups/export-excel', {
+          headers: {
+            Authorization: `Bearer ${token || 'demo-token'}`,
+            'x-active-role': activeRole,
+          },
+        });
+
+        if (response.ok) {
+          blob = await response.blob();
+        }
+      } catch {
+        // Fallback below
       }
 
-      const blob = await response.blob();
+      if (!blob) {
+        blob = clientDataStore.exportFinancialLedgerToExcel();
+      }
+
       const currentMonth = new Date().toISOString().slice(0, 7);
       const downloadUrl = window.URL.createObjectURL(blob);
       const a = document.createElement('a');

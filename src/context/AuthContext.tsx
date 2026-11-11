@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import { auth, googleAuthProvider } from '../lib/firebase.ts';
+import { clientDataStore } from '../lib/clientDataStore.ts';
 
 export type UserRole = 'admin' | 'warden' | 'accountant' | 'student';
 
@@ -95,6 +96,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return;
     }
 
+    if (currentTok.startsWith('sr_token_client_')) {
+      const clientMe = clientDataStore.handleGetMe();
+      if (clientMe.user) {
+        setDbUser(clientMe.user);
+        setStudentProfile(clientMe.studentProfile || null);
+        if (clientMe.user.role) {
+          setActiveRoleOverride(roleToFetch || clientMe.user.role);
+        }
+      }
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await fetch('/api/auth/me', {
         headers: {
@@ -114,6 +128,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             setActiveRoleOverride(data.user.role);
           }
         }
+      } else if (res.status === 404) {
+        const clientMe = clientDataStore.handleGetMe();
+        if (clientMe.user) {
+          setDbUser(clientMe.user);
+          setStudentProfile(clientMe.studentProfile || null);
+          if (clientMe.user.role) {
+            setActiveRoleOverride(roleToFetch || clientMe.user.role);
+          }
+        }
       } else if (res.status === 401) {
         // Token expired or invalid
         localStorage.removeItem('sr_auth_token');
@@ -122,8 +145,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setDbUser(null);
         setStudentProfile(null);
       }
-    } catch (err) {
-      console.error('Error fetching /api/auth/me:', err);
+    } catch {
+      const clientMe = clientDataStore.handleGetMe();
+      if (clientMe.user) {
+        setDbUser(clientMe.user);
+        setStudentProfile(clientMe.studentProfile || null);
+        if (clientMe.user.role) {
+          setActiveRoleOverride(roleToFetch || clientMe.user.role);
+        }
+      }
     } finally {
       setLoading(false);
     }
@@ -155,7 +185,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (email: string, password: string) => {
-    let res: Response;
+    let res: Response | null = null;
+    let serverAvailable = true;
+
     try {
       res = await fetch('/api/auth/login', {
         method: 'POST',
@@ -164,8 +196,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         },
         body: JSON.stringify({ email, password }),
       });
-    } catch (networkErr: any) {
-      throw new Error(`Unable to reach server (${networkErr?.message || 'Network error'}). Please try again.`);
+      if (res.status === 404 || res.status === 502 || res.status === 503) {
+        serverAvailable = false;
+      }
+    } catch {
+      serverAvailable = false;
+    }
+
+    if (!serverAvailable || !res || res.status === 404) {
+      // Fallback to client-side data store for static hosting / offline
+      const clientData = clientDataStore.handleLogin({ email, password });
+      setToken(clientData.token);
+      setDbUser(clientData.user);
+      setStudentProfile(clientData.studentProfile || null);
+      setActiveRoleOverride(clientData.user.role);
+      localStorage.setItem('sr_auth_token', clientData.token);
+      localStorage.setItem('sr_auth_user', JSON.stringify(clientData.user));
+      return clientData;
     }
 
     const contentType = res.headers.get('content-type') || '';
@@ -175,7 +222,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } else {
       const text = await res.text().catch(() => '');
       if (!res.ok) {
-        throw new Error(`Server returned status ${res.status}. ${text ? text.slice(0, 100) : 'Authentication service is unavailable. Please try again shortly.'}`);
+        try {
+          const clientData = clientDataStore.handleLogin({ email, password });
+          setToken(clientData.token);
+          setDbUser(clientData.user);
+          setStudentProfile(clientData.studentProfile || null);
+          setActiveRoleOverride(clientData.user.role);
+          localStorage.setItem('sr_auth_token', clientData.token);
+          localStorage.setItem('sr_auth_user', JSON.stringify(clientData.user));
+          return clientData;
+        } catch (clientErr: any) {
+          throw new Error(clientErr.message || `Server returned status ${res.status}. ${text ? text.slice(0, 100) : ''}`);
+        }
       }
     }
 
@@ -193,7 +251,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const signup = async (formData: any) => {
-    let res: Response;
+    let res: Response | null = null;
+    let serverAvailable = true;
+
     try {
       res = await fetch('/api/auth/signup', {
         method: 'POST',
@@ -202,8 +262,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         },
         body: JSON.stringify(formData),
       });
-    } catch (networkErr: any) {
-      throw new Error(`Unable to reach server (${networkErr?.message || 'Network error'}). Please try again.`);
+      if (res.status === 404 || res.status === 502 || res.status === 503) {
+        serverAvailable = false;
+      }
+    } catch {
+      serverAvailable = false;
+    }
+
+    if (!serverAvailable || !res || res.status === 404) {
+      const clientData = clientDataStore.handleSignup(formData);
+      setToken(clientData.token);
+      setDbUser(clientData.user);
+      setStudentProfile(clientData.studentProfile || null);
+      setActiveRoleOverride('student');
+      localStorage.setItem('sr_auth_token', clientData.token);
+      localStorage.setItem('sr_auth_user', JSON.stringify(clientData.user));
+      return clientData;
     }
 
     const contentType = res.headers.get('content-type') || '';
@@ -211,9 +285,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (contentType.includes('application/json')) {
       data = await res.json().catch(() => ({}));
     } else {
-      const text = await res.text().catch(() => '');
       if (!res.ok) {
-        throw new Error(`Server returned status ${res.status}. ${text ? text.slice(0, 100) : 'Registration service is unavailable. Please try again shortly.'}`);
+        const clientData = clientDataStore.handleSignup(formData);
+        setToken(clientData.token);
+        setDbUser(clientData.user);
+        setStudentProfile(clientData.studentProfile || null);
+        setActiveRoleOverride('student');
+        localStorage.setItem('sr_auth_token', clientData.token);
+        localStorage.setItem('sr_auth_user', JSON.stringify(clientData.user));
+        return clientData;
       }
     }
 
@@ -313,17 +393,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const apiFetch = async (path: string, options: RequestInit = {}) => {
     const currentToken = token;
 
+    // If client token or client session, execute directly on client data store
+    if (currentToken?.startsWith('sr_token_client_')) {
+      try {
+        return clientDataStore.handleRequest(path, options);
+      } catch (err: any) {
+        throw new Error(err.message || 'Operation failed');
+      }
+    }
+
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${currentToken || 'demo-token'}`,
       'x-active-role': activeRole,
-      ...(options.headers as Record<string, string> || {}),
+      ...((options.headers as Record<string, string>) || {}),
     };
 
-    const response = await fetch(path, {
-      ...options,
-      headers,
-    });
+    let response: Response;
+    try {
+      response = await fetch(path, {
+        ...options,
+        headers,
+      });
+    } catch {
+      // Unreachable server (offline / static host) -> execute locally
+      return clientDataStore.handleRequest(path, options);
+    }
+
+    // If 404 (static hosting like Vercel where /api/ is not routed to Express)
+    if (response.status === 404 || response.status === 502 || response.status === 503) {
+      try {
+        return clientDataStore.handleRequest(path, options);
+      } catch (clientErr: any) {
+        throw new Error(clientErr.message || `Request failed with status ${response.status}`);
+      }
+    }
 
     const contentType = response.headers.get('content-type') || '';
     let data: any = null;
@@ -332,7 +436,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } else {
       const text = await response.text();
       if (!response.ok) {
-        throw new Error(`Server error (${response.status}): ${text.slice(0, 120)}`);
+        try {
+          return clientDataStore.handleRequest(path, options);
+        } catch {
+          throw new Error(`Server error (${response.status}): ${text.slice(0, 120)}`);
+        }
       }
       return text;
     }

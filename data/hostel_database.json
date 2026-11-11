@@ -354,8 +354,84 @@
       "createdAt": "2026-11-07T14:21:23.392Z"
     }
   ],
-  "invoices": [],
-  "payments": [],
+  "invoices": [
+    {
+      "invoiceNumber": "INV-20261111-0001",
+      "studentId": 1,
+      "billingMonth": "2026-11-11 to 2026-12-11",
+      "dueDate": "2026-12-11",
+      "amountDue": "20000.00",
+      "amountPaid": "30000.00",
+      "status": "paid",
+      "id": 1,
+      "createdAt": "2026-11-11T13:15:00.555Z"
+    },
+    {
+      "invoiceNumber": "INV-20261211-0001",
+      "studentId": 1,
+      "billingMonth": "2026-12-11 to 2027-12-11",
+      "dueDate": "2027-12-11",
+      "amountDue": "20000.00",
+      "amountPaid": "20000.00",
+      "status": "paid",
+      "id": 2,
+      "createdAt": "2026-11-11T13:16:14.871Z"
+    }
+  ],
+  "payments": [
+    {
+      "receiptNumber": "REC-20261111-66000E",
+      "invoiceId": 1,
+      "studentId": 1,
+      "amount": "20000.00",
+      "paymentMethod": "upi_bank_transfer",
+      "transactionReference": null,
+      "paymentDate": "2026-11-11",
+      "collectedBy": 5,
+      "remarks": "Payment settlement for month 2026-11-11 to 2026-12-11",
+      "id": 1,
+      "createdAt": "2026-11-11T13:15:00.557Z"
+    },
+    {
+      "receiptNumber": "REC-20261111-05BE8D",
+      "invoiceId": 1,
+      "studentId": 1,
+      "amount": "10000.00",
+      "paymentMethod": "upi_bank_transfer",
+      "transactionReference": null,
+      "paymentDate": "2026-11-11",
+      "collectedBy": 5,
+      "remarks": "Payment settlement for month 2026-11-11 to 2026-12-11",
+      "id": 2,
+      "createdAt": "2026-11-11T13:15:47.584Z"
+    },
+    {
+      "receiptNumber": "REC-20261111-89F14A",
+      "invoiceId": 2,
+      "studentId": 1,
+      "amount": "10000.00",
+      "paymentMethod": "upi_bank_transfer",
+      "transactionReference": null,
+      "paymentDate": "2026-11-11",
+      "collectedBy": 5,
+      "remarks": "Payment for period 2026-12-11 to 2027-12-11",
+      "id": 3,
+      "createdAt": "2026-11-11T13:16:14.872Z"
+    },
+    {
+      "receiptNumber": "REC-20261111-4760F7",
+      "invoiceId": 2,
+      "studentId": 1,
+      "amount": "10000.00",
+      "paymentMethod": "upi_bank_transfer",
+      "transactionReference": null,
+      "paymentDate": "2026-11-11",
+      "collectedBy": 5,
+      "remarks": "Payment for period 2026-12-11 to 2027-12-11",
+      "id": 4,
+      "createdAt": "2026-11-11T13:16:39.039Z"
+    }
+  ],
   "emailReminders": [],
   "backups": [
     {
@@ -396,6 +472,51 @@
     }
   ],
   "activityLogs": [
+    {
+      "userId": 5,
+      "action": "USER_LOGIN",
+      "entityType": "auth",
+      "entityId": 5,
+      "details": "Gautam Jayswal logged in successfully as ADMIN",
+      "id": 58,
+      "createdAt": "2026-11-11T13:20:08.155Z"
+    },
+    {
+      "userId": 5,
+      "action": "RECORD_PAYMENT",
+      "entityType": "payment",
+      "entityId": 4,
+      "details": "Recorded payment of 10000.00 (REC-20261111-4760F7) for student Gautam Jayswal",
+      "id": 57,
+      "createdAt": "2026-11-11T13:16:39.041Z"
+    },
+    {
+      "userId": 5,
+      "action": "RECORD_PAYMENT",
+      "entityType": "payment",
+      "entityId": 3,
+      "details": "Recorded payment of 10000.00 (REC-20261111-89F14A) for student Gautam Jayswal",
+      "id": 56,
+      "createdAt": "2026-11-11T13:16:14.873Z"
+    },
+    {
+      "userId": 5,
+      "action": "RECORD_PAYMENT",
+      "entityType": "payment",
+      "entityId": 2,
+      "details": "Recorded payment of 10000.00 (REC-20261111-05BE8D) for student Gautam Jayswal",
+      "id": 55,
+      "createdAt": "2026-11-11T13:15:47.589Z"
+    },
+    {
+      "userId": 5,
+      "action": "RECORD_PAYMENT",
+      "entityType": "payment",
+      "entityId": 1,
+      "details": "Recorded payment of 20000.00 (REC-20261111-66000E) for student Gautam Jayswal",
+      "id": 54,
+      "createdAt": "2026-11-11T13:15:00.558Z"
+    },
     {
       "userId": 5,
       "action": "USER_LOGIN",

@@ -38,20 +38,6 @@ export const AuthView: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
-  // Auto-fill admin credentials requested by user
-  const handleAutoFillAdmin = () => {
-    setSignInEmail('jayswalgautam4@gmail.com');
-    setSignInPassword('Gautam123');
-    setError(null);
-  };
-
-  // Auto-fill student credentials for quick testing
-  const handleAutoFillStudent = () => {
-    setSignInEmail('student@dormis.edu');
-    setSignInPassword('Student123');
-    setError(null);
-  };
-
   const handleSignInSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -186,10 +172,7 @@ export const AuthView: React.FC = () => {
               </div>
 
               <div>
-                <div className="flex items-center justify-between mb-1">
-                  <label className="block text-xs font-semibold text-zinc-300">Password</label>
-                  <span className="text-[10px] text-zinc-500">Default: Gautam123</span>
-                </div>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1">Password</label>
                 <div className="relative">
                   <Lock className="w-4 h-4 text-zinc-500 absolute left-3 top-3" />
                   <input
@@ -224,57 +207,6 @@ export const AuthView: React.FC = () => {
                   </>
                 )}
               </button>
-
-              {/* Quick Credentials Buttons */}
-              <div className="pt-4 mt-4 border-t border-zinc-800 space-y-2">
-                <p className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider text-center">
-                  Quick-Login Options
-                </p>
-
-                {/* Admin auto-fill */}
-                <button
-                  type="button"
-                  onClick={handleAutoFillAdmin}
-                  className="w-full py-2 px-3 bg-zinc-900 hover:bg-zinc-800 border border-amber-500/40 rounded-lg text-left transition flex items-center justify-between group cursor-pointer"
-                >
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-amber-400" />
-                    <div>
-                      <div className="text-xs font-semibold text-amber-300">
-                        Admin Login (Full System Control)
-                      </div>
-                      <div className="text-[10px] text-zinc-400 font-mono">
-                        jayswalgautam4@gmail.com &bull; Gautam123
-                      </div>
-                    </div>
-                  </div>
-                  <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono group-hover:bg-amber-500/30">
-                    Auto-Fill
-                  </span>
-                </button>
-
-                {/* Student auto-fill */}
-                <button
-                  type="button"
-                  onClick={handleAutoFillStudent}
-                  className="w-full py-2 px-3 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-lg text-left transition flex items-center justify-between group cursor-pointer"
-                >
-                  <div className="flex items-center gap-2">
-                    <User className="w-4 h-4 text-cyan-400" />
-                    <div>
-                      <div className="text-xs font-semibold text-zinc-300">
-                        Student Login (Read-Only Records)
-                      </div>
-                      <div className="text-[10px] text-zinc-400 font-mono">
-                        student@dormis.edu &bull; Student123
-                      </div>
-                    </div>
-                  </div>
-                  <span className="text-[10px] bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded font-mono group-hover:bg-zinc-700">
-                    Auto-Fill
-                  </span>
-                </button>
-              </div>
             </form>
           )}
 
